@@ -1,4 +1,4 @@
-**From:** EMS | Mydetails [mailto:mydetails@emscard.com]  
+**From:** [EMS | Mydetails](mailto:mydetails@emscard.com)  
 **Sent:** `{date}`  
 **To:** `{email}`  
 **Subject:** EMS e-Commerce Gateway - Inloggegevens `{id}` - `{name}`  
