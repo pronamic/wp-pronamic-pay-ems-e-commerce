@@ -15,7 +15,7 @@ U heeft aangegeven de Sellxed plug-in van onze partner Customweb te willen gebru
 Om de plug-in te installeren gebruikt u de instructies van Sellxed. U heeft eventueel aanvullende instructies nodig voor de installatie of het gebruik van de EMS e-Commerce Gateway. Deze vindt u in de supportsectie van onze website. [Klik hier voor aanvullende instructies.](https://emscard.nl/support/hoe-neem-ik-mijn-ems-e-commerce-gateway-met-sellxed-plug-gebruik)
 
 **Login informatie:**
-Onderstaande login gegevens heeft u nodig om de aansluiting te maken met de EMS e-Commerce Gateway. De gebruikersnaam die u moet invullen is gelijk aan onderstaande merchant store name met als voorvoegsel ‘`{prefix}’.
+Onderstaande login gegevens heeft u nodig om de aansluiting te maken met de EMS e-Commerce Gateway. De gebruikersnaam die u moet invullen is gelijk aan onderstaande merchant store name met als voorvoegsel ‘`{prefix}`’.
 
 | EMS e-Commerce Gateway Beheermodule               | Stap 1: Test integratie                                  | Stap 2: Live integratie                                 |
 | ------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
