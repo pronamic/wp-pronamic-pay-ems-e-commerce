@@ -14,6 +14,8 @@
 | ------------------------------------------------------------------------------ | -------- | ------- |
 | [EMS e-Commerce Gateway API - Technical Installation Manual][doc-api-feb-2016] | EN       | 2016-02 |
 | [EMS e-Commerce Gateway HPP - Technical Installation Manual][doc-hpp-feb-2016] | EN       | 2016-02 |
+| [Handleiding EMS e-Commerce Gateway][doc-han-feb-2016]                         | NL       | 2016-02 |
 
 [doc-api-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/EMS-e-Commerce-Gateway-Manual-API-installation-2016-2-NL-EN.pdf
 [doc-hpp-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/EMS-e-Commerce-Gateway-Manual-HPP-installation-2016-2-NL-EN.pdf
+[doc-han-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/Gebruikershandleiding-EMS-e-Commerce-Gateway-2016-3-NL-NL_0.pdf
