@@ -6,6 +6,7 @@
 
 *	[European Merchant Services](https://emscard.nl)
 	*	[Handleidingen](https://emscard.nl/support/categorie/handleidingen)
+	*	[Hoe installeer ik mijn EMS e-Commerce Gateway met de Sellxed Plug-in?](https://emscard.nl/support/hoe-neem-ik-mijn-ems-e-commerce-gateway-met-sellxed-plug-gebruik)
 
 ## Documentation
 

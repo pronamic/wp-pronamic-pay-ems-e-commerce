@@ -1,0 +1,54 @@
+{
+	"name": "wp-pay-gateways/ems-e-commerce",
+	"description": "EMS e-Commerce Gateway driver for the WordPress payment processing library.",
+	"keywords": ["wordpress", "wp", "pay", "ems", "gateway", "pronamic"],
+	"homepage": "http://www.wp-pay.org/gateways/ems-e-commerce/",
+	"license": "GPL-3.0+",
+	"authors": [
+		{
+			"name": "Pronamic",
+			"email": "info@pronamic.eu",
+			"homepage": "http://www.pronamic.eu/",
+			"role": "Company"
+		},
+		{
+			"name": "Remco Tolsma",
+			"email": "info@remcotolsma.nl",
+			"homepage": "http://www.remcotolsma.nl/",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "support@wp-pay.org",
+		"issues": "https://github.com/wp-pay-gateways/ems-e-commerce/issues",
+		"source": "https://github.com/wp-pay-gateways/ems-e-commerce"
+	},
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"require": {
+		"php": ">=5.2.4",
+		"xrstf/composer-php52": "1.*",
+		"wp-pay/core": "^1.3.7",
+		"wp-pay-gateways/common": "^1.0.2"
+	},
+	"require-dev": {
+		"phpmd/phpmd": "^2.2.3",
+		"satooshi/php-coveralls": "^0.7.1",
+		"squizlabs/php_codesniffer": "^2.2.0",
+		"wp-coding-standards/wpcs": "0.9.0",
+		"wp-cli/wp-cli": "^0.21.1"
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		],
+		"post-update-cmd": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		],
+		"post-autoload-dump": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd",
+			"bin/install-wpcs"
+		]
+	}
+}
