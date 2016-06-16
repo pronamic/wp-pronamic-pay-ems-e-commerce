@@ -12,7 +12,7 @@ In deze mail krijgt u van ons de instructies en login-informatie voor de EMS e-C
 **Sellxed Plug-in**  
 U heeft aangegeven de Sellxed plug-in van onze partner Customweb te willen gebruiken om de gateway te koppelen aan uw webshopsysteem. U koopt de plug-in voor uw webshopsysteem op de Sellxed webpagina: MAGENTO, PrestaShop, Shopware, XT-Commerce, Gambio, Modified-shop, SEO: Mercari, commerce:SEO, WordPress WooCommerce, WordPress JigoShop, OpenCart, OXID eSales, AceShop, Mijoshop, JTL shop, Drupal Commerce, xt:Commerce 4 plug-in kopen.
  
-Om de plug-in te installeren gebruikt u de instructies van Sellxed. U heeft eventueel aanvullende instructies nodig voor de installatie of het gebruik van de EMS e-Commerce Gateway. Deze vindt u in de supportsectie van onze website. Klik hier voor aanvullende instructies.
+Om de plug-in te installeren gebruikt u de instructies van Sellxed. U heeft eventueel aanvullende instructies nodig voor de installatie of het gebruik van de EMS e-Commerce Gateway. Deze vindt u in de supportsectie van onze website. [Klik hier voor aanvullende instructies.](https://emscard.nl/support/hoe-neem-ik-mijn-ems-e-commerce-gateway-met-sellxed-plug-gebruik)
 
 **Login informatie:**
 Onderstaande login gegevens heeft u nodig om de aansluiting te maken met de EMS e-Commerce Gateway. De gebruikersnaam die u moet invullen is gelijk aan onderstaande merchant store name met als voorvoegsel ‘`{prefix}’.
