@@ -17,19 +17,28 @@ Om de plug-in te installeren gebruikt u de instructies van Sellxed. U heeft even
 **Login informatie:**
 Onderstaande login gegevens heeft u nodig om de aansluiting te maken met de EMS e-Commerce Gateway. De gebruikersnaam die u moet invullen is gelijk aan onderstaande merchant store name met als voorvoegsel ‘`{prefix}’.
 
-| EMS e-Commerce Gateway Beheermodule | Stap 1: Test integratie                                  | Stap 2: Live integratie                                 |
-| ----------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
-| Interface URL:                      | `https://test.ipg-online.com/vt/login`                   | `https://www.ipg-online.com/vt/login`                   |
-| STORENAME:                          | `{id_test}                                               | `{id_live}`                                             |
-| USERNAME:                           | `{id_test}                                               | `{id_live}`                                             |
-| Wachtwoord:                         | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
-| Certificaat Wachtwoord:             | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
-| **Connect Solution HPP**                                                                                                                                 |
-| Interface URL:                      | `https://test.ipg-online.com/connect/gateway/processing` | `https://www.ipg-online.com/connect/gateway/processing` |
-| Storename:                          | `{id_test}                                               | `{id_live}`                                             |
-| Shared Secret:                      | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
-| **Connect Solution HPP**                                                                                                                                 |
-| Interface URL:                      | `https://test.ipg-online.com/ipgapi/services`            | `https://www.ipg-online.com/ipgapi/services`            |
+| EMS e-Commerce Gateway Beheermodule               | Stap 1: Test integratie                                  | Stap 2: Live integratie                                 |
+| ------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
+| Interface URL:                                    | `https://test.ipg-online.com/vt/login`                   | `https://www.ipg-online.com/vt/login`                   |
+| STORENAME:                                        | `{id_test}`                                              | `{id_live}`                                             |
+| USERNAME:                                         | `{id_test}`                                              | `{id_live}`                                             |
+| Wachtwoord:                                       | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
+| Certificaat Wachtwoord:                           | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
+| **Connect Solution HPP**                                                                                                                                               |
+| Interface URL:                                    | `https://test.ipg-online.com/connect/gateway/processing` | `https://www.ipg-online.com/connect/gateway/processing` |
+| Storename:                                        | `{id_test}`                                              | `{id_live}`                                             |
+| Shared Secret:                                    | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
+| **Connect Solution HPP**                                                                                                                                               |
+| Interface URL:                                    | `https://test.ipg-online.com/ipgapi/services`            | `https://www.ipg-online.com/ipgapi/services`            |
+| Store ID:                                         | `{id_test}`                                              | `{id_live}`                                             |
+| User ID:                                          | WS`{id_test}`._.1                                        | WS`{id_live}`._.1                                       |
+| Password:                                         | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
+| Client Certificate .p12 File:                     | Zie bijlage zip folder.                                  | Zie bijlage zip folder.                                 |
+| Client Certificate (.p12) Installatie Wachtwoord: | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
+| Client Certificate Private Key:                   | Zie bijlage zip folder.                                  | Zie bijlage zip folder.                                 |
+| Client Certificate Private Key Wachtwoord:        | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
+| Client Certificate PEM File:                      | Zie bijlage zip folder.                                  | Zie bijlage zip folder.                                 |
+| Server Certificate PEM File:                      | Zie bijlage zip folder.                                  | Zie bijlage zip folder.                                 |
 
 **Heeft u nog vragen?**  
 Als u na het lezen van de gebruikershandleiding nog vragen heeft over het gebruik van de EMS e-Commerce Gateway, kunt u contact opnemen met onze klantenservice op 020-6 603 120. Wij zijn doordeweeks bereikbaar van 8.30 tot 18.00, donderdag en vrijdag tot 19.00 uur. Of stuur een e-mail naar contact@emscard.com. Wij helpen u graag.
