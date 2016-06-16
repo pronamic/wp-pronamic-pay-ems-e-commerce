@@ -9,10 +9,27 @@ U heeft zojuist van ons een introductie e-mail ontvangen voor de EMS e-Commerce 
  
 In deze e-mail vindt u de wachtwoorden en shared secrets die u nodig heeft bij de installatie van de EMS e-Commerce Gateway.
 
---
+| EMS e-Commerce Gateway Beheermodule               | Stap 1: Test integratie | Stap 2: Live integratie |
+| ------------------------------------------------- | ----------------------- | ----------------------- |
+| Wachtwoord:                                       | `{random}`              | `{random}`              |
+| Certificaat Wachtwoord:                           | `{random}`              | `{random}`              |
+| **Connect Solution (HPP)**                                                                            |
+| Shared Secret:                                    | `{random}`              | `{random}`              |
+| **Web Service API**                                                                                   |
+| Wachtwoord:                                       | WS`{id_test}`._.1       | WS`{id_live}`._.1       |
+| Client Certificate (.p12) Installatie Wachtwoord: | `{random}`              | `{random}`              |
+| Client Certificate Private Key Wachtwoord:        | `{random}`              | `{random}`              |
 
 **Heeft u nog vragen?**  
 Als u na het lezen van de gebruikershandleiding nog vragen heeft over het gebruik van de EMS e-Commerce Gateway, kunt u contact opnemen met onze klantenservice op 020-6 603 120 , doordeweeks bereikbaar van 8.30 tot 18.00, donderdag en vrijdag tot 19.00 uur. Of stuur een e-mail naar contact@emscard.com. Wij helpen u graag.
- 
+
 Met vriendelijke groet,
 Kind regards,
+
+Merchant Implementation Team
++31 20 6 603 120
++31 20 2 010 155
+mydetails@emscard.com
+www.emscard.com
+| Apollo Building, Herikerbergweg 25, 1101 CN Amsterdam, The Netherlands |
+| KvK 34.226.533 | PO 22764, 1100 DG Amsterdam |

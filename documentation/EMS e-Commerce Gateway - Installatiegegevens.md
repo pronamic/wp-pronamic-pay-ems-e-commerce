@@ -45,3 +45,11 @@ Als u na het lezen van de gebruikershandleiding nog vragen heeft over het gebrui
  
 Met vriendelijke groet,
 Kind regards,
+
+Merchant Implementation Team
++31 20 6 603 120
++31 20 2 010 155
+mydetails@emscard.com
+www.emscard.com
+| Apollo Building, Herikerbergweg 25, 1101 CN Amsterdam, The Netherlands |
+| KvK 34.226.533 | PO 22764, 1100 DG Amsterdam |
