@@ -24,15 +24,11 @@ Onderstaande login gegevens heeft u nodig om de aansluiting te maken met de EMS 
 | USERNAME:                           | `{id_test}                                               | `{id_live}`                                             |
 | Wachtwoord:                         | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
 | Certificaat Wachtwoord:             | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
-| ----------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
-| Connect Solution HPP                                                                                                                                     |
-| ----------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
+| **Connect Solution HPP**                                                                                                                                 |
 | Interface URL:                      | `https://test.ipg-online.com/connect/gateway/processing` | `https://www.ipg-online.com/connect/gateway/processing` |
 | Storename:                          | `{id_test}                                               | `{id_live}`                                             |
 | Shared Secret:                      | Deze ontvangt u in een aparte e-mail                     | Deze ontvangt u in een aparte e-mail                    |
-| ----------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
-| Connect Solution HPP                                                                                                                                     |
-| ----------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
+| **Connect Solution HPP**                                                                                                                                 |
 | Interface URL:                      | `https://test.ipg-online.com/ipgapi/services`            | `https://www.ipg-online.com/ipgapi/services`            |
 
 **Heeft u nog vragen?**  
