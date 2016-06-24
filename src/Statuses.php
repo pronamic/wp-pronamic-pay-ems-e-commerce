@@ -10,7 +10,7 @@
  * @version 1.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_EMS_Statuses {
+class Pronamic_WP_Pay_Gateways_EMS_Statuses {
 	/**
 	 * Open
 	 *
