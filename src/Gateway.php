@@ -29,8 +29,8 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 		parent::__construct( $config );
 
 		$this->set_method( Pronamic_WP_Pay_Gateway::METHOD_HTML_FORM );
-		$this->set_has_feedback( true ); // @todo EMS
-		$this->set_amount_minimum( 0.01 ); // @todo EMS
+		$this->set_has_feedback( true );
+		$this->set_amount_minimum( 0.01 );
 
 		// Client
 		$this->client = new Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client();
@@ -56,9 +56,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 	public function get_supported_payment_methods() {
 		return array(
 			Pronamic_WP_Pay_PaymentMethods::IDEAL        => Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL,
-//			Pronamic_WP_Pay_PaymentMethods::CREDIT_CARD  => Pronamic_WP_Pay_Gateways_OmniKassa_PaymentMethods::VISA,
-//			Pronamic_WP_Pay_PaymentMethods::DIRECT_DEBIT => Pronamic_WP_Pay_Gateways_OmniKassa_PaymentMethods::INCASSO,
-//			Pronamic_WP_Pay_PaymentMethods::BANCONTACT   => Pronamic_WP_Pay_Gateways_OmniKassa_PaymentMethods::BCMC,
 		);
 	}
 
@@ -68,39 +65,21 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 	 * Start
 	 *
 	 * @see Pronamic_WP_Pay_Gateway::start()
-	 * @param Pronamic_Pay_PaymentDataInterface $data
+	 * @param Pronamic_Pay_Payment $payment
 	 */
 	public function start( Pronamic_Pay_Payment $payment ) {
-		$transaction_reference = $payment->get_meta( 'ems_ecommerce_transaction_reference' );
-
-		if ( empty( $transaction_reference ) ) {
-			$transaction_reference = md5( uniqid( '', true ) );
-
-			$payment->set_meta( 'ems_ecommerce_transaction_reference', $transaction_reference );
-		}
-
 		$payment->set_action_url( $this->client->get_action_url() );
 
+		$this->client->set_payment_id( $payment->get_id() );
 		$this->client->set_customer_language( Pronamic_WP_Pay_Gateways_EMS_ECommerce_LocaleHelper::transform( $payment->get_language() ) );
 		$this->client->set_currency_numeric_code( $payment->get_currency_numeric_code() );
 		$this->client->set_order_id( Pronamic_WP_Pay_Gateways_EMS_ECommerce_Util::get_order_id( $this->config->order_id, $payment ) );
 		$this->client->set_return_url( home_url( '/' ) );
+		$this->client->set_notification_url( home_url( '/' ) );
 		$this->client->set_amount( $payment->get_amount() );
-		$this->client->set_transaction_reference( $transaction_reference );
 		$this->client->set_issuer_id( $payment->get_issuer() );
 
-		// @todo Implement payment methods other than iDEAL
 		switch ( $payment->get_method() ) {
-			case Pronamic_WP_Pay_PaymentMethods::CREDIT_CARD :
-				$this->client->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::MAESTRO );
-				$this->client->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::MASTERCARD );
-				$this->client->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::VISA );
-
-				break;
-//			case Pronamic_WP_Pay_PaymentMethods::DIRECT_DEBIT :
-//				$this->client->$this->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::INCASSO );
-//
-//				break;
 			case Pronamic_WP_Pay_PaymentMethods::IDEAL :
 				$this->client->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL );
 
@@ -113,7 +92,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 	/**
 	 * Get the output HTML
 	 *
-	 * @since 1.1.2
+	 * @since 1.0.0
 	 * @see Pronamic_WP_Pay_Gateway::get_output_html()
 	 */
 	public function get_output_fields() {
@@ -128,36 +107,78 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 	 * @param Pronamic_Pay_Payment $payment
 	 */
 	public function update_status( Pronamic_Pay_Payment $payment ) {
-		$input_data = filter_input( INPUT_POST, 'Data', FILTER_SANITIZE_STRING );
-		$input_seal = filter_input( INPUT_POST, 'Seal', FILTER_SANITIZE_STRING );
+		$approval_code = filter_input( INPUT_POST, 'approval_code', FILTER_SANITIZE_STRING );
 
-//		$data = Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client::parse_piped_string( $input_data );
+		$input_hash = filter_input( INPUT_POST, 'response_hash' );
 
-		$seal = Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client::compute_hash( $input_data, $this->config->secret );
+		$hash_values = array(
+			$this->client->get_secret(),
+			$approval_code,
+			filter_input( INPUT_POST, 'chargetotal', FILTER_SANITIZE_STRING ),
+			filter_input( INPUT_POST, 'currency', FILTER_SANITIZE_STRING ),
+			filter_input( INPUT_POST, 'txndatetime', FILTER_SANITIZE_STRING ),
+			$this->client->get_storename(),
+		);
 
-		// Check if the posted seal is equal to our seal
-		if ( 0 === strcasecmp( $input_seal, $seal ) ) {
-			$response_code = $data['responseCode'];
+		if ( filter_has_var( INPUT_POST, 'notification_hash' ) ) {
+			$input_hash = filter_input( INPUT_POST, 'notification_hash' );
 
-			$status = Pronamic_WP_Pay_Gateways_EMS_ECommerce_ResponseCodes::transform( $response_code );
+			$hash_values = array(
+				filter_input( INPUT_POST, 'chargetotal', FILTER_SANITIZE_STRING ),
+				$this->client->get_secret(),
+				filter_input( INPUT_POST, 'currency', FILTER_SANITIZE_STRING ),
+				filter_input( INPUT_POST, 'txndatetime', FILTER_SANITIZE_STRING ),
+				$this->client->get_storename(),
+				$approval_code,
+			);
+		}
+
+		$hash = Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client::compute_hash( $hash_values );
+
+		// Check if the posted hash is equal to the calculated response or notification hash
+		if ( 0 === strcasecmp( $input_hash, $hash ) ) {
+			$response_code = substr( $approval_code, 0, 1 );
+
+			switch ( $response_code ) {
+				case 'Y' :
+					$status = Pronamic_WP_Pay_Statuses::SUCCESS;
+
+					break;
+				case 'N':
+					$status = Pronamic_WP_Pay_Statuses::FAILURE;
+
+					$fail_code = filter_input( INPUT_POST, 'fail_rc', FILTER_SANITIZE_NUMBER_INT );
+
+					if ( '5993' === $fail_code ) {
+						$status = Pronamic_WP_Pay_Statuses::CANCELLED;
+					}
+
+					break;
+
+				default:
+					$status = Pronamic_WP_Pay_Statuses::OPEN;
+
+					break;
+			}
 
 			// Set the status of the payment
 			$payment->set_status( $status );
 
 			$labels = array(
-				'amount'               => __( 'Amount', 'pronamic_ideal' ),
-				'captureDay'           => _x( 'Capture Day', 'creditcard', 'pronamic_ideal' ),
-				'captureMode'          => _x( 'Capture Mode', 'creditcard', 'pronamic_ideal' ),
-				'currencyCode'         => __( 'Currency Code', 'pronamic_ideal' ),
-				'merchantId'           => __( 'Merchant ID', 'pronamic_ideal' ),
-				'orderId'              => __( 'Order ID', 'pronamic_ideal' ),
-				'transactionDateTime'  => __( 'Transaction Date Time', 'pronamic_ideal' ),
-				'transactionReference' => __( 'Transaction Reference', 'pronamic_ideal' ),
-				'keyVersion'           => __( 'Key Version', 'pronamic_ideal' ),
-				'authorisationId'      => __( 'Authorisation ID', 'pronamic_ideal' ),
-				'paymentMeanBrand'     => __( 'Payment Mean Brand', 'pronamic_ideal' ),
-				'paymentMeanType'      => __( 'Payment Mean Type', 'pronamic_ideal' ),
-				'responseCode'         => __( 'Response Code', 'pronamic_ideal' ),
+				'approval_code'           => __( 'Approval code', 'pronamic_ideal' ),
+				'oid'                     => __( 'Order ID', 'pronamic_ideal' ),
+				'refnumber'               => __( 'Reference number', 'creditcard', 'pronamic_ideal' ),
+				'status'                  => __( 'Status', 'pronamic_ideal' ),
+				'txndate_processed'       => __( 'Time of transaction processing', 'pronamic_ideal' ),
+				'tdate'                   => __( 'Identification for transaction', 'pronamic_ideal' ),
+				'fail_reason'             => __( 'Fail reason', 'pronamic_ideal' ),
+				'response_hash'           => __( 'Response hash', 'pronamic_ideal' ),
+				'processor_response_code' => __( 'Processor response code', 'pronamic_ideal' ),
+				'fail_rc'                 => __( 'Fail code', 'pronamic_ideal' ),
+				'terminal_id'             => __( 'Terminal ID', 'pronamic_ideal' ),
+				'ccbin'                   => __( 'Creditcard issuing bank', 'pronamic_ideal' ),
+				'cccountry'               => __( 'Creditcard country', 'pronamic_ideal' ),
+				'ccbrand'                 => __( 'Creditcard brand', 'pronamic_ideal' ),
 			);
 
 			$note = '';
@@ -169,9 +190,9 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 			$note .= '<dl>';
 
 			foreach ( $labels as $key => $label ) {
-				if ( isset( $data[ $key ] ) ) {
+				if ( filter_has_var( INPUT_POST, $key ) ) {
 					$note .= sprintf( '<dt>%s</dt>', esc_html( $label ) );
-					$note .= sprintf( '<dd>%s</dd>', esc_html( $data[ $key ] ) );
+					$note .= sprintf( '<dd>%s</dd>', esc_html( filter_input( INPUT_POST, $key, FILTER_SANITIZE_STRING ) ) );
 				}
 			}
 

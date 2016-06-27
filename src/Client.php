@@ -113,28 +113,14 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	private $amount;
 
-	/**
-	 * Transaction reference
-	 *
-	 * @var string AN35
-	 */
-	private $transaction_reference;
-
-	/**
-	 * Key version
-	 *
-	 * @var string N10
-	 */
-	private $key_version;
-
 	//////////////////////////////////////////////////
 
 	/**
-	 * Automatic response URL
+	 * Notification URL
 	 *
 	 * @var string ANS512 url
 	 */
-	private $automatic_response_url;
+	private $notification_url;
 
 	/**
 	 * Customer language in ISO 639‐1 Alpha2
@@ -157,6 +143,13 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 * @var string AN32
 	 */
 	private $order_id;
+
+	/**
+	 * Payment ID
+	 *
+	 * @var string AN32
+	 */
+	private $payment_id;
 
 	/**
 	 * Expiration date
@@ -225,7 +218,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Set the currency code
 	 *
-	 * @param string $currencyCode
+	 * @param $currency_numeric_code
 	 */
 	public function set_currency_numeric_code( $currency_numeric_code ) {
 		$this->currency_numeric_code = $currency_numeric_code;
@@ -245,7 +238,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Set the storename
 	 *
-	 * @param string $merchant_id
+	 * @param string $storename
 	 */
 	public function set_storename( $storename ) {
 		$this->storename = $storename;
@@ -305,64 +298,21 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Get transaction reference
+	 * Get notification URL
 	 *
 	 * @return string
 	 */
-	public function get_transaction_reference() {
-		return $this->transaction_reference;
+	public function get_notification_url() {
+		return $this->notification_url;
 	}
 
 	/**
-	 * Set transaction reference
-	 * AN..max35 (AN = Alphanumeric, free text)
+	 * Set notification URL
 	 *
-	 * @param string $transactionReference
+	 * @param string $notification_url
 	 */
-	public function set_transaction_reference( $transaction_reference ) {
-		$this->transaction_reference = Pronamic_WP_Pay_Gateways_EMS_ECommerce_DataHelper::filter_an( $transaction_reference, 35 );
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Get key version
-	 *
-	 * @return string
-	 */
-	public function get_key_version() {
-		return $this->key_version;
-	}
-
-	/**
-	 * Set key version
-	 *
-	 * @param string $key_version
-	 */
-	public function set_key_version( $key_version ) {
-		$this->key_version = $key_version;
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Get automatic response URL
-	 *
-	 * @return string
-	 */
-	public function get_automatic_response_url() {
-		return $this->automatic_response_url;
-	}
-
-	/**
-	 * Set automatic response URL
-	 *
-	 * LET OP! De URL mag geen parameters bevatten.
-	 *
-	 * @param string $automatic_response_url
-	 */
-	public function set_automatic_response_url( $automatic_response_url ) {
-		$this->automatic_response_url = $automatic_response_url;
+	public function set_notification_url( $notification_url ) {
+		$this->notification_url = $notification_url;
 	}
 
 	//////////////////////////////////////////////////
@@ -379,7 +329,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Set customer language
 	 *
-	 * @param string $customerLanguage
+	 * @param string $customer_language
 	 */
 	public function set_customer_language( $customer_language ) {
 		$this->customer_language = $customer_language;
@@ -419,10 +369,30 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Set order ID
 	 *
-	 * @param string $orderId
+	 * @param string $order_id
 	 */
 	public function set_order_id( $order_id ) {
 		$this->order_id = $order_id;
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Get payment ID
+	 *
+	 * @return int
+	 */
+	public function get_payment_id() {
+		return $this->payment_id;
+	}
+
+	/**
+	 * Set payment ID
+	 *
+	 * @param int $payment_id
+	 */
+	public function set_payment_id( $payment_id ) {
+		$this->payment_id = $payment_id;
 	}
 
 	//////////////////////////////////////////////////
@@ -451,15 +421,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		return $result;
 	}
 
-	/**
-	 * Set expiration date
-	 *
-	 * @param DateTime $expirationDate
-	 */
-	public function set_expiration_date( DateTime $date = null ) {
-		$this->expiration_date = $date;
-	}
-
 	//////////////////////////////////////////////////
 
 	/**
@@ -468,7 +429,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 * @return string
 	 */
 	public function get_data() {
-		// Payment Request - required fields
+		// Required fields for payment request
 		$required_fields = array(
 			'txntype'        => 'sale',
 			'timezone'       => 'Europe/Amsterdam',
@@ -480,16 +441,16 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 			'currency'       => $this->get_currency_numeric_code(),
 		);
 
-		// Payment request - optional fields
+		// Optional fields for payment request
 		$optional_fields = array(
-//			'transactionReference' => $this->get_transaction_reference(),
-//			'expirationDate'       => $this->get_formatted_expiration_date(),
-			'oid'                => $this->get_order_id(),
-			'language'           => $this->get_customer_language(),
-			'paymentMethod'      => $this->get_payment_method(),
-			'responseFailURL'    => $this->get_return_url(),
-			'responseSuccessURL' => $this->get_return_url(),
-			'idealIssuerID'      => $this->get_issuer_id(),
+			'oid'                        => $this->get_order_id(),
+			'language'                   => $this->get_customer_language(),
+			'paymentMethod'              => $this->get_payment_method(),
+			'responseFailURL'            => $this->get_return_url(),
+			'responseSuccessURL'         => $this->get_return_url(),
+			'transactionNotificationURL' => $this->get_notification_url(),
+			'idealIssuerID'              => $this->get_issuer_id(),
+			'ems_notify_payment_id'      => $this->get_payment_id(),
 		);
 
 		// @see http://briancray.com/2009/04/25/remove-null-values-php-arrays/
@@ -532,19 +493,26 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		$data   = $this->get_data();
 		$secret = $this->get_secret();
 
-		return self::compute_hash( $data, $secret );
+		$values = array(
+			$data['storename'],
+			$data['txndatetime'],
+			$data['chargetotal'],
+			$data['currency'],
+			$secret
+		);
+
+		return self::compute_hash( $values );
 	}
 
 	/**
 	 * Compute hash
 	 *
-	 * @param string $data
-	 * @param string $secret
+	 * @param array $values
 	 *
 	 * @return string
 	 */
-	public static function compute_hash( $data, $secret ) {
-		$value = $data['storename'] . $data['txndatetime'] . $data['chargetotal'] . $data['currency'] . $secret;
+	public static function compute_hash( $values ) {
+		$value = implode( '', $values );
 
 		$value = bin2hex( $value );
 
@@ -556,7 +524,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Get fields
 	 *
-	 * @since 1.1.2
+	 * @since 1.0.0
 	 * @return array
 	 */
 	public function get_fields() {
@@ -565,32 +533,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		$fields['hash'] = $this->get_hash();
 
 		return $fields;
-	}
-
-	//////////////////////////////////////////////////
-
-	public function get_response_code_description() {
-		return array(
-			'00' => 'Transaction success, authorization accepted',
-			'02' => 'Please call the bank because the authorization limit on the card has been exceeded',
-			'03' => 'Invalid merchant contract',
-			'05' => 'Do not honor, authorization refused',
-			'12' => 'Invalid transaction, check the parameters sent in the request',
-			'14' => 'Invalid card number or invalid Card Security Code or Card (for MasterCard) or invalid Card Verification Value (for Visa/MAESTRO)',
-			'17' => 'Cancellation of payment by the end user',
-			'24' => 'Invalid status',
-			'25' => 'Transaction not found in database',
-			'30' => 'Invalid format',
-			'34' => 'Fraud suspicion',
-			'40' => 'Operation not allowed to this Merchant',
-			'60' => 'Pending transaction',
-			'63' => 'Security breach detected, transaction stopped',
-			'75' => 'The number of attempts to enter the card number has been exceeded (three tries exhausted)',
-			'90' => 'Acquirer server temporarily unavailable',
-			'94' => 'Duplicate transaction',
-			'97' => 'Request time-out; transaction refused',
-			'99' => 'Payment page temporarily unavailable',
-		);
 	}
 
 	//////////////////////////////////////////////////

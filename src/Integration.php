@@ -17,7 +17,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Integration extends Pronamic_WP_Pay
 		$this->product_url   = '';
 		$this->dashboard_url = array(
 			__( 'test', 'pronamic_ideal' ) => 'https://test.ipg-online.com/vt/login',
-			__( 'production', 'pronamic_ideal' ) => 'https://www.ipg-online.com/vt/login',
+			__( 'live', 'pronamic_ideal' ) => 'https://www.ipg-online.com/vt/login',
 		);
 		$this->provider      = 'ems';
 
