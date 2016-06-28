@@ -40,7 +40,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Settings extends Pronamic_WP_Pay_Ga
 			'filter'      => FILTER_SANITIZE_STRING,
 			'section'     => 'ems_ecommerce',
 			'meta_key'    => '_pronamic_gateway_ems_ecommerce_storename',
-			'title'       => __( 'Storename', 'pronamic_ideal' ),
+			'title'       => _x( 'Storename', 'ems', 'pronamic_ideal' ),
 			'type'        => 'text',
 			'classes'     => array( 'code' ),
 		);
