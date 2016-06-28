@@ -55,7 +55,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 	 */
 	public function get_supported_payment_methods() {
 		return array(
-			Pronamic_WP_Pay_PaymentMethods::IDEAL        => Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL,
+			Pronamic_WP_Pay_PaymentMethods::IDEAL => Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL,
 		);
 	}
 
@@ -78,13 +78,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 		$this->client->set_notification_url( home_url( '/' ) );
 		$this->client->set_amount( $payment->get_amount() );
 		$this->client->set_issuer_id( $payment->get_issuer() );
-
-		switch ( $payment->get_method() ) {
-			case Pronamic_WP_Pay_PaymentMethods::IDEAL :
-				$this->client->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL );
-
-				break;
-		}
+		$this->client->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::transform( $payment->get_method() ) );
 	}
 
 	/////////////////////////////////////////////////
