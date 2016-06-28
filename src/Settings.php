@@ -19,15 +19,15 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Settings extends Pronamic_WP_Pay_Ga
 	public function sections( array $sections ) {
 		// iDEAL
 		$sections['ems_ecommerce'] = array(
-			'title'   => __( 'EMS e-Commerce', 'pronamic_ideal' ),
-			'methods' => array( 'ems_ecommerce' ),
+			'title'       => __( 'EMS e-Commerce', 'pronamic_ideal' ),
+			'methods'     => array( 'ems_ecommerce' ),
 			'description' => __( 'Account details are provided by the payment provider after registration. These settings need to match with the payment provider dashboard.', 'pronamic_ideal' ),
 		);
 
 		// Advanced
 		$sections['ems_ecommerce_advanced'] = array(
-			'title'   => __( 'Advanced', 'pronamic_ideal' ),
-			'methods' => array( 'ems_ecommerce' ),
+			'title'       => __( 'Advanced', 'pronamic_ideal' ),
+			'methods'     => array( 'ems_ecommerce' ),
 			'description' => __( 'Optional settings for advanced usage only.', 'pronamic_ideal' ),
 		);
 
