@@ -218,10 +218,10 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Set the currency code
 	 *
-	 * @param $currency_numeric_code
+	 * @param string $code
 	 */
-	public function set_currency_numeric_code( $currency_numeric_code ) {
-		$this->currency_numeric_code = $currency_numeric_code;
+	public function set_currency_numeric_code( $code ) {
+		$this->currency_numeric_code = $code;
 	}
 
 	//////////////////////////////////////////////////
