@@ -33,7 +33,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_LocaleHelper {
 		);
 
 		// @todo Locale transformation
-		// print_r( $locale ); exit;
 
 		// Sub string
 		$locale = substr( $locale, 0, 2 );

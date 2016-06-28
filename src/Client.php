@@ -498,7 +498,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 			$data['txndatetime'],
 			$data['chargetotal'],
 			$data['currency'],
-			$secret
+			$secret,
 		);
 
 		return self::compute_hash( $values );
