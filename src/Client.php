@@ -118,13 +118,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	private $payment_id;
 
-	/**
-	 * Expiration date
-	 *
-	 * @var DateTime
-	 */
-	private $expiration_date;
-
 	//////////////////////////////////////////////////
 
 	/**
@@ -360,32 +353,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	public function set_payment_id( $payment_id ) {
 		$this->payment_id = $payment_id;
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Get expiration date
-	 *
-	 * @return DateTime
-	 */
-	public function get_expiration_date() {
-		return $this->expiration_date;
-	}
-
-	/**
-	 * Get expiration date
-	 *
-	 * @return string
-	 */
-	public function get_formatted_expiration_date() {
-		$result = null;
-
-		if ( null !== $this->expiration_date ) {
-			$result = $this->expiration_date->format( DATE_ISO8601 );
-		}
-
-		return $result;
 	}
 
 	//////////////////////////////////////////////////
