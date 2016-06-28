@@ -399,7 +399,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		// Required fields for payment request
 		$required_fields = array(
 			'txntype'        => 'sale',
-			'timezone'       => 'Europe/Amsterdam',
+			'timezone'       => get_option( 'timezone_string' ),
 			'txndatetime'    => current_time( 'Y:m:d-H:i:s' ),
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
