@@ -90,12 +90,12 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	private $notification_url;
 
 	/**
-	 * Customer language in ISO 639‐1 Alpha2
+	 * Language in ISO 639‐1 Alpha2
 	 *
 	 * @doc http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 	 * @var string A2
 	 */
-	private $customer_language;
+	private $language;
 
 	/**
 	 * Payment method
@@ -285,21 +285,21 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Get customer language
+	 * Get language.
 	 *
 	 * @return string
 	 */
-	public function get_customer_language() {
-		return $this->customer_language;
+	public function get_language() {
+		return $this->language;
 	}
 
 	/**
-	 * Set customer language
+	 * Set language.
 	 *
-	 * @param string $customer_language
+	 * @param string $language
 	 */
-	public function set_customer_language( $customer_language ) {
-		$this->customer_language = $customer_language;
+	public function set_language( $language ) {
+		$this->language = $language;
 	}
 
 	//////////////////////////////////////////////////
@@ -411,7 +411,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		// Optional fields for payment request
 		$optional_fields = array(
 			'oid'                        => $this->get_order_id(),
-			'language'                   => $this->get_customer_language(),
+			'language'                   => $this->get_language(),
 			'paymentMethod'              => $this->get_payment_method(),
 			'responseFailURL'            => $this->get_return_url(),
 			'responseSuccessURL'         => $this->get_return_url(),

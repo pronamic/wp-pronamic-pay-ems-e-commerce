@@ -71,7 +71,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 		$payment->set_action_url( $this->client->get_action_url() );
 
 		$this->client->set_payment_id( $payment->get_id() );
-		$this->client->set_customer_language( $payment->get_locale() );
+		$this->client->set_language( $payment->get_locale() );
 		$this->client->set_currency_numeric_code( $payment->get_currency_numeric_code() );
 		$this->client->set_order_id( Pronamic_WP_Pay_Gateways_EMS_ECommerce_Util::get_order_id( $this->config->order_id, $payment ) );
 		$this->client->set_return_url( home_url( '/' ) );
