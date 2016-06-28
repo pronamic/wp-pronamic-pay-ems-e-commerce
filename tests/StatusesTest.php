@@ -17,7 +17,7 @@ class Pronamic_WP_Pay_Gateways_EMS_StatusesTest extends PHPUnit_Framework_TestCa
 	 * @dataProvider status_matrix_provider
 	 */
 	public function test_transform( $ems_status, $expected ) {
-		$status = Pronamic_WP_Pay_Gateways_EMS_ECommerce_LocaleHelper::transform( $ems_status );
+		$status = Pronamic_WP_Pay_Gateways_EMS_Statuses::transform( $ems_status );
 
 		$this->assertEquals( $expected, $status );
 	}
