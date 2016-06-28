@@ -70,12 +70,12 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
 	 */
 	public static function transform( $payment_method ) {
 		switch ( $payment_method ) {
+			case Pronamic_WP_Pay_PaymentMethods::IDEAL :
+				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL;
 			case Pronamic_WP_Pay_PaymentMethods::PAYPAL :
 				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::PAYPAL;
 			case Pronamic_WP_Pay_PaymentMethods::SOFORT :
 				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::SOFORT;
-			case Pronamic_WP_Pay_PaymentMethods::IDEAL :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL;
 			default :
 				return null;
 		}
