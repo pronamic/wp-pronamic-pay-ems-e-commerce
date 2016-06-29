@@ -36,3 +36,19 @@
 *	The documentation states that `timezone` needs to be in the `Area/Location` format, but invalid timezone values will not result in errors.
 *	The documentation states that `language` parameter is limited to a few specific langauges, but unsupported or invalid langauge values will not result in errors.
 
+
+## Screenshots
+
+### Uw transactie is niet juist afgerond
+
+![Uw transactie is niet juist afgerond](documentation/screenshot-test.ipg-online.com-connect-gateway-processing.png)
+
+**De fout kan een van de volgende oorzaken hebben:**
+
+*	Uw winkelnaam is niet in het systeem ingevoerd.
+*	De syntax van een of meer formuliervelden is onjuist.
+*	U heeft niet alle verplichte formuliervelden ingevuld.
+*	De hash waarde is onjuist omdat het niet correct is opgesteld of omdat uw shared secret fout is.
+*	Uw sessie is verlopen. Ga terug naar de winkel en ga opnieuw naar de betaalpagina.
+*	Er zijn technische problemen met de payment gateway. Probeer over een aantal minuten opnieuw af te rekenen.
+*	Het is op dit moment niet toegestaan om de transactie uit te voeren.
