@@ -37,6 +37,19 @@
 *	The documentation states that `language` parameter is limited to a few specific langauges, but unsupported or invalid langauge values will not result in errors.
 
 
+## FAQ
+
+### How to solve "Purchase amount exceeds merchant limit." errors?
+
+If you do a payment and getting back the "Purchase amount exceeds merchant limit." fail reason you have to check the "Fraud Settings » Set Maximum Purchase Amount" value.
+By default this setting may be set to `€ 0,00` you have to increase to the maximum amount you allow clients to pay in once.
+
+```
+N:-5005:FRAUD – Purchase limit exceeded
+Purchase amount exceeds merchant limit.
+```
+
+
 ## Screenshots
 
 ### Uw transactie is niet juist afgerond
