@@ -368,7 +368,8 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 			'txntype'        => 'sale',
 			// According the EMS documentation the timezone should be in `Area/Location` notation, but it seems like `UTC` is also working.
 			'timezone'       => 'UTC',
-			'txndatetime'    => current_time( 'Y:m:d-H:i:s', 1 ),
+			// In WordPress, PHP's `time()` will always return `UTC` and is the same as calling `current_time( 'timestamp', true )`.
+			'txndatetime'    => current_time( 'Y:m:d-H:i:s', true ),
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
