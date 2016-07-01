@@ -366,8 +366,9 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		// Required fields for payment request
 		$required_fields = array(
 			'txntype'        => 'sale',
-			'timezone'       => get_option( 'timezone_string' ),
-			'txndatetime'    => current_time( 'Y:m:d-H:i:s' ),
+			// According the EMS documentation the timezone should be in `Area/Location` notation, but it seems like `UTC` is also working.
+			'timezone'       => 'UTC',
+			'txndatetime'    => current_time( 'Y:m:d-H:i:s', 1 ),
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
