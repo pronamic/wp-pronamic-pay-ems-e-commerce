@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
-## 1.0.0 - 2016-06-16
+## 1.0.0 - 2016-07-06
 - First release.
 
 [unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.0...HEAD
