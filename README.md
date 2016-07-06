@@ -20,12 +20,16 @@
 
 ## Documentation
 
-| Title                                                                          | Language | Date    |
-| ------------------------------------------------------------------------------ | -------- | ------- |
-| [EMS e-Commerce Gateway API - Technical Installation Manual][doc-api-feb-2016] | EN       | 2016-02 |
-| [EMS e-Commerce Gateway HPP - Technical Installation Manual][doc-hpp-feb-2016] | EN       | 2016-02 |
-| [Handleiding EMS e-Commerce Gateway][doc-han-feb-2016]                         | NL       | 2016-02 |
+| Title                                                                                            | Language | Date    |
+| ------------------------------------------------------------------------------------------------ | -------- | ------- |
+| [EMS e-Commerce - Gateway Hosted Payment Page - Technical Integration Manual][doc-hpp-jul-2016]  | EN       | 2016-07 |
+| [Card Acceptance Operating Guide For Card Not Present (CNP) Merchants][doc-cnp]                  | EN       | 2016-07 |
+| [EMS e-Commerce Gateway API - Technical Installation Manual][doc-api-feb-2016]                   | EN       | 2016-02 |
+| ~~[EMS e-Commerce Gateway HPP - Technical Installation Manual][doc-hpp-feb-2016]~~               | EN       | 2016-02 |
+| [Handleiding EMS e-Commerce Gateway][doc-han-feb-2016]                                           | NL       | 2016-02 |
 
+[doc-hpp-jul-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/07/EMS-Integration-Manual-e-Commerce-Gateway-HPP-NL-EN-2016-7.pdf
+[doc-cnp]:          https://www.pronamic.eu/wp-content/uploads/sites/2/2016/07/EMS-CNP-Card-Acceptance-Operating-Guide-NL-EN-2016-6.pdf
 [doc-api-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/EMS-e-Commerce-Gateway-Manual-API-installation-2016-2-NL-EN.pdf
 [doc-hpp-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/EMS-e-Commerce-Gateway-Manual-HPP-installation-2016-2-NL-EN.pdf
 [doc-han-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/Gebruikershandleiding-EMS-e-Commerce-Gateway-2016-3-NL-NL_0.pdf
