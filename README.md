@@ -8,7 +8,7 @@
 [![Total Downloads](https://poser.pugx.org/wp-pay-gateways/ems-e-commerce/downloads.svg)](https://packagist.org/packages/wp-pay-gateways/ems-e-commerce)
 [![Latest Unstable Version](https://poser.pugx.org/wp-pay-gateways/ems-e-commerce/v/unstable.svg)](https://packagist.org/packages/wp-pay-gateways/ems-e-commerce)
 [![License](https://poser.pugx.org/wp-pay-gateways/ems-e-commerce/license.svg)](https://packagist.org/packages/wp-pay-gateways/ems-e-commerce)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](http://gruntjs.com/)
 
 
 ## Links
