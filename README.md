@@ -8,7 +8,7 @@
 [![Total Downloads](https://poser.pugx.org/wp-pay-gateways/ems-e-commerce/downloads.svg)](https://packagist.org/packages/wp-pay-gateways/ems-e-commerce)
 [![Latest Unstable Version](https://poser.pugx.org/wp-pay-gateways/ems-e-commerce/v/unstable.svg)](https://packagist.org/packages/wp-pay-gateways/ems-e-commerce)
 [![License](https://poser.pugx.org/wp-pay-gateways/ems-e-commerce/license.svg)](https://packagist.org/packages/wp-pay-gateways/ems-e-commerce)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](http://gruntjs.com/)
 
 
 ## Links
@@ -33,6 +33,19 @@
 [doc-api-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/EMS-e-Commerce-Gateway-Manual-API-installation-2016-2-NL-EN.pdf
 [doc-hpp-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/EMS-e-Commerce-Gateway-Manual-HPP-installation-2016-2-NL-EN.pdf
 [doc-han-feb-2016]: https://www.pronamic.eu/wp-content/uploads/sites/2/2016/06/Gebruikershandleiding-EMS-e-Commerce-Gateway-2016-3-NL-NL_0.pdf
+
+### Changes February 2016 and July 2016
+
+*	Revised chapters 1 and 2 in relation to new ‘combinedpage’ checkout option, pages 3-5
+*	Revised message examples, pages 5-6
+*	Comment on mode parameter in relation to checkout options, page 8
+*	Parameter checkoutoption, page 9
+*	merchantTransactionId for postAuth, page 11
+*	ponumber, page 11/12
+*	email field limitation correction, page 14
+*	fullbypass correction, page 15
+*	Examples for transaction status, page 20
+*	Reworked explanation for hash generation, page 23 
 
 
 ## Notes

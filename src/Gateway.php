@@ -7,7 +7,7 @@
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.0
+ * @version 1.0.1
  * @since 1.0.0
  */
 class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gateway {
@@ -55,9 +55,9 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 	 */
 	public function get_supported_payment_methods() {
 		return array(
-			Pronamic_WP_Pay_PaymentMethods::IDEAL  => Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL,
-			Pronamic_WP_Pay_PaymentMethods::PAYPAL => Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::PAYPAL,
-			Pronamic_WP_Pay_PaymentMethods::SOFORT => Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::SOFORT,
+			Pronamic_WP_Pay_PaymentMethods::IDEAL,
+			Pronamic_WP_Pay_PaymentMethods::PAYPAL,
+			Pronamic_WP_Pay_PaymentMethods::SOFORT,
 		);
 	}
 
@@ -163,7 +163,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 			$labels = array(
 				'approval_code'           => __( 'Approval code', 'pronamic_ideal' ),
 				'oid'                     => __( 'Order ID', 'pronamic_ideal' ),
-				'refnumber'               => __( 'Reference number', 'creditcard', 'pronamic_ideal' ),
+				'refnumber'               => _x( 'Reference number', 'creditcard', 'pronamic_ideal' ),
 				'status'                  => __( 'Status', 'pronamic_ideal' ),
 				'txndate_processed'       => __( 'Time of transaction processing', 'pronamic_ideal' ),
 				'tdate'                   => __( 'Identification for transaction', 'pronamic_ideal' ),

@@ -55,6 +55,17 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Settings extends Pronamic_WP_Pay_Ga
 			'classes'     => array( 'large-text', 'code' ),
 		);
 
+		// Transaction feedback
+		$fields[] = array(
+			'section'     => 'ems_ecommerce',
+			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
+			'type'        => 'description',
+			'html'        => sprintf(
+				'<span class="dashicons dashicons-yes"></span> %s',
+				__( 'Payment status updates will be processed without any additional configuration.', 'pronamic_ideal' )
+			),
+		);
+
 		// Purchase ID
 		$fields[] = array(
 			'filter'      => FILTER_SANITIZE_STRING,
