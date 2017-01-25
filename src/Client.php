@@ -3,11 +3,11 @@
 /**
  * Title: EMS e-Commerce client
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2017
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.0
+ * @version 1.0.2
  * @since 1.0.0
  */
 class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
@@ -135,6 +135,13 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 * @var string
 	 */
 	private $issuer_id;
+
+	//////////////////////////////////////////////////
+
+	/**
+	 * Transaction datetime.
+	 */
+	private $transation_datetime;
 
 	//////////////////////////////////////////////////
 
@@ -358,6 +365,26 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	//////////////////////////////////////////////////
 
 	/**
+	 * Get the transaaction datetime.
+	 *
+	 * @param boolean $createNew indicator for creating a new expire date
+	 * @return
+	 */
+	public function get_transation_datetime( $create_new = false ) {
+		if ( null === $this->transation_datetime || $create_new ) {
+			$this->transation_datetime = new DateTime( null, new DateTimeZone( 'UTC' ) );
+		}
+
+		return $this->transation_datetime;
+	}
+
+	public function set_transaction_datetime( DateTime $datetime ) {
+		$this->transation_datetime = $datetime;
+	}
+
+	//////////////////////////////////////////////////
+
+	/**
 	 * Get data
 	 *
 	 * @return string
@@ -369,7 +396,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 			// According the EMS documentation the timezone should be in `Area/Location` notation, but it seems like `UTC` is also working.
 			'timezone'       => 'UTC',
 			// In WordPress, PHP's `time()` will always return `UTC` and is the same as calling `current_time( 'timestamp', true )`.
-			'txndatetime'    => current_time( 'Y:m:d-H:i:s', true ),
+			'txndatetime'    => $this->get_transation_datetime()->format( 'Y:m:d-H:i:s' ),
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
