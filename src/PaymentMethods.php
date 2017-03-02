@@ -11,6 +11,13 @@
  */
 class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
 	/**
+	 * Constant for the Bancontact payment method.
+	 *
+	 * @var string
+	 */
+	const BANCONTACT = 'BCMC';
+
+	/**
 	 * Constant for the MasterCard payment method.
 	 *
 	 * @var string
