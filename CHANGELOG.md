@@ -23,6 +23,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2016-07-06
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.2...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.3...HEAD
+[1.0.3]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.0...1.0.1
