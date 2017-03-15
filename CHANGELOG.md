@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
-## [1.0.3] - Unreleased
+## [1.0.3] - 2017-03-15
 - Set decimal and group separators for `chargetotal` parameter according to specs.
 - Added support for Bancontact payment method.
 - No longer filter storename and shared secret setting fields.
