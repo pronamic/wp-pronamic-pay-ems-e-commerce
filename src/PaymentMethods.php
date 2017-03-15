@@ -7,9 +7,17 @@
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.0
+ * @version 1.0.3
+ * @since 1.0.0
  */
 class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
+	/**
+	 * Constant for the Bancontact payment method.
+	 *
+	 * @var string
+	 */
+	const BANCONTACT = 'BCMC';
+
 	/**
 	 * Constant for the MasterCard payment method.
 	 *

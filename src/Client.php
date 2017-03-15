@@ -7,7 +7,7 @@
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.2
+ * @version 1.0.3
  * @since 1.0.0
  */
 class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
@@ -400,7 +400,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
-			'chargetotal'    => number_format( ( $this->get_formatted_amount() / 100 ), 2 ),
+			'chargetotal'    => number_format( ( $this->get_formatted_amount() / 100 ), 2, '.', '' ),
 			'currency'       => $this->get_currency_numeric_code(),
 		);
 
