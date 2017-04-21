@@ -81,7 +81,15 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 		$this->client->set_notification_url( home_url( '/' ) );
 		$this->client->set_amount( $payment->get_amount() );
 		$this->client->set_issuer_id( $payment->get_issuer() );
-		$this->client->set_payment_method( Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::transform( $payment->get_method() ) );
+
+		$payment_method = Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::transform( $payment->get_method() );
+
+		if ( null === $payment_method && '' !== $payment->get_method() ) {
+			// Leap of faith if the WordPress payment method could not transform to a EMS method?
+			$payment_method = $payment->get_method();
+		}
+
+		$this->client->set_payment_method( $payment_method );
 	}
 
 	/////////////////////////////////////////////////
