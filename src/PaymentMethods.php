@@ -78,6 +78,8 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
 	 */
 	public static function transform( $payment_method ) {
 		switch ( $payment_method ) {
+			case Pronamic_WP_Pay_PaymentMethods::BANCONTACT :
+				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::BANCONTACT;
 			case Pronamic_WP_Pay_PaymentMethods::IDEAL :
 				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL;
 			case Pronamic_WP_Pay_PaymentMethods::PAYPAL :
