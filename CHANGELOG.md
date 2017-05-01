@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.0.4] - 2017-05-01
+- Added missing Bancontact payment method transformation.
+- Added leap of faith payment method support.
+
 ## [1.0.3] - 2017-03-15
 - Set decimal and group separators for `chargetotal` parameter according to specs.
 - Added support for Bancontact payment method.
@@ -23,7 +27,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2016-07-06
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.3...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.0...1.0.1
