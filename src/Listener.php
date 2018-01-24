@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Pay\Plugin;
 
 /**
  * Title: EMS e-Commerce listener
@@ -17,7 +18,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Listener implements Pronamic_Pay_Ga
 
 			$payment = get_pronamic_payment( $payment_id );
 
-			Pronamic_WP_Pay_Plugin::update_payment( $payment );
+			Plugin::update_payment( $payment );
 		}
 	}
 }
