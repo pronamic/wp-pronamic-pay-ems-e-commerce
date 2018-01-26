@@ -1,5 +1,11 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS_ECommerce;
+
+use DateTime;
+use DateTimeZone;
+use Pronamic\WordPress\Pay\Core\Util;
+
 /**
  * Title: EMS e-Commerce client
  * Description:
@@ -10,7 +16,7 @@
  * @version 1.0.3
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
+class Client {
 	/**
 	 * Action URL to start a payment request in the test environment,
 	 * the POST data is sent to.
@@ -141,7 +147,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Transaction datetime.
 	 */
-	private $transation_datetime;
+	private $transaction_datetime;
 
 	//////////////////////////////////////////////////
 
@@ -156,7 +162,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	/**
 	 * Get the action URL
 	 *
-	 * @return the action URL
+	 * @return string action URL
 	 */
 	public function get_action_url() {
 		return $this->action_url;
@@ -250,7 +256,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 * @return int
 	 */
 	public function get_formatted_amount() {
-		return Pronamic_WP_Pay_Util::amount_to_cents( $this->amount );
+		return Util::amount_to_cents( $this->amount );
 	}
 
 	/**
@@ -365,21 +371,22 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Get the transaaction datetime.
+	 * Get the transaction datetime.
 	 *
 	 * @param boolean $createNew indicator for creating a new expire date
+	 *
 	 * @return
 	 */
-	public function get_transation_datetime( $create_new = false ) {
-		if ( null === $this->transation_datetime || $create_new ) {
-			$this->transation_datetime = new DateTime( null, new DateTimeZone( 'UTC' ) );
+	public function get_transaction_datetime( $create_new = false ) {
+		if ( null === $this->transaction_datetime || $create_new ) {
+			$this->transaction_datetime = new DateTime( null, new DateTimeZone( 'UTC' ) );
 		}
 
-		return $this->transation_datetime;
+		return $this->transaction_datetime;
 	}
 
 	public function set_transaction_datetime( DateTime $datetime ) {
-		$this->transation_datetime = $datetime;
+		$this->transaction_datetime = $datetime;
 	}
 
 	//////////////////////////////////////////////////
@@ -396,7 +403,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 			// According the EMS documentation the timezone should be in `Area/Location` notation, but it seems like `UTC` is also working.
 			'timezone'       => 'UTC',
 			// In WordPress, PHP's `time()` will always return `UTC` and is the same as calling `current_time( 'timestamp', true )`.
-			'txndatetime'    => $this->get_transation_datetime()->format( 'Y:m:d-H:i:s' ),
+			'txndatetime'    => $this->get_transaction_datetime()->format( 'Y:m:d-H:i:s' ),
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
@@ -476,7 +483,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	public static function compute_hash( $values ) {
 		$value = implode( '', $values );
-
 		$value = bin2hex( $value );
 
 		return hash( self::HASH_ALGORITHM_SHA256, $value );

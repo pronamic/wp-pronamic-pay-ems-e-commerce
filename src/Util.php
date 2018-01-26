@@ -1,5 +1,8 @@
 <?php
-use Pronamic\WordPress\Pay\Payments\PaymentDataInterface;
+
+namespace Pronamic\WordPress\Pay\Gateways\EMS_ECommerce;
+
+use Pronamic\WordPress\Pay\Payments\Payment;
 
 /**
  * Title: EMS e-Commerce utility class
@@ -11,15 +14,16 @@ use Pronamic\WordPress\Pay\Payments\PaymentDataInterface;
  * @version 1.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Util {
+class Util {
 	/**
 	 * Get order ID.
 	 *
-	 * @param string                            $order_id
-	 * @param PaymentDataInterface $data
-	 * @param Pronamic_Pay_Payment              $payment
+	 * @param string $order_id
+	 * @param Payment $payment
+	 *
+	 * @return string
 	 */
-	public static function get_order_id( $order_id, Pronamic_Pay_Payment $payment ) {
+	public static function get_order_id( $order_id, Payment $payment ) {
 		// Replacements definition
 		$replacements = array(
 			'{order_id}'   => $payment->get_order_id(),

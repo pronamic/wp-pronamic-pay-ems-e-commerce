@@ -1,5 +1,8 @@
 <?php
 
+use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
+use Pronamic\WordPress\Pay\Gateways\EMS_ECommerce\PaymentMethods;
+
 /**
  * Title: EMS e-Commerce Gateway payment methods tests
  * Description:
@@ -17,16 +20,16 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethodsTest extends PHPUnit_
 	 * @dataProvider status_matrix_provider
 	 */
 	public function test_transform( $wp_payment_method, $expected ) {
-		$ems_payment_method = Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::transform( $wp_payment_method );
+		$ems_payment_method = PaymentMethods::transform( $wp_payment_method );
 
 		$this->assertEquals( $expected, $ems_payment_method );
 	}
 
 	public function status_matrix_provider() {
 		return array(
-			array( Pronamic_WP_Pay_PaymentMethods::IDEAL, Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL ),
-			array( Pronamic_WP_Pay_PaymentMethods::PAYPAL, Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::PAYPAL ),
-			array( Pronamic_WP_Pay_PaymentMethods::SOFORT, Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::SOFORT ),
+			array( Core_PaymentMethods::IDEAL, PaymentMethods::IDEAL ),
+			array( Core_PaymentMethods::PAYPAL, PaymentMethods::PAYPAL ),
+			array( Core_PaymentMethods::SOFORT, PaymentMethods::SOFORT ),
 			array( 'not existing payment method', null ),
 		);
 	}

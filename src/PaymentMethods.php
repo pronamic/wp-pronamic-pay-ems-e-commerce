@@ -1,5 +1,9 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS_ECommerce;
+
+use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
+
 /**
  * Title: EMS e-Commerce payment methods
  * Description:
@@ -10,7 +14,7 @@
  * @version 1.0.4
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
+class PaymentMethods {
 	/**
 	 * Constant for the Bancontact payment method.
 	 *
@@ -73,19 +77,21 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
 	 * Transform WordPress payment method to EMS payment method.
 	 *
 	 * @since 1.0.0
-	 * @param string $method
+	 *
+	 * @param string $payment_method
+	 *
 	 * @return string
 	 */
 	public static function transform( $payment_method ) {
 		switch ( $payment_method ) {
-			case Pronamic_WP_Pay_PaymentMethods::BANCONTACT :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::BANCONTACT;
-			case Pronamic_WP_Pay_PaymentMethods::IDEAL :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL;
-			case Pronamic_WP_Pay_PaymentMethods::PAYPAL :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::PAYPAL;
-			case Pronamic_WP_Pay_PaymentMethods::SOFORT :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::SOFORT;
+			case Core_PaymentMethods::BANCONTACT :
+				return PaymentMethods::BANCONTACT;
+			case Core_PaymentMethods::IDEAL :
+				return PaymentMethods::IDEAL;
+			case Core_PaymentMethods::PAYPAL :
+				return PaymentMethods::PAYPAL;
+			case Core_PaymentMethods::SOFORT :
+				return PaymentMethods::SOFORT;
 			default :
 				return null;
 		}

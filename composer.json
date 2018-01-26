@@ -24,7 +24,9 @@
 		"source": "https://github.com/wp-pay-gateways/ems-e-commerce"
 	},
 	"autoload": {
-		"classmap": ["src/"]
+		"psr-4": {
+			"Pronamic\\WordPress\\Pay\\Gateways\\EMS_ECommerce\\": "src/"
+		}
 	},
 	"config": {
 		"platform": {

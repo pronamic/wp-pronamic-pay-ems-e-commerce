@@ -1,4 +1,7 @@
 <?php
+
+namespace Pronamic\WordPress\Pay\Gateways\EMS_ECommerce;
+
 use Pronamic\WordPress\Pay\Plugin;
 
 /**
@@ -11,14 +14,16 @@ use Pronamic\WordPress\Pay\Plugin;
  * @version 1.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Listener implements Pronamic_Pay_Gateways_ListenerInterface {
+class Listener {
 	public static function listen() {
-		if ( filter_has_var( INPUT_POST, 'ems_notify_payment_id' ) ) {
-			$payment_id = filter_input( INPUT_POST, 'ems_notify_payment_id' );
-
-			$payment = get_pronamic_payment( $payment_id );
-
-			Plugin::update_payment( $payment );
+		if ( ! filter_has_var( INPUT_POST, 'ems_notify_payment_id' ) ) {
+			return;
 		}
+
+		$payment_id = filter_input( INPUT_POST, 'ems_notify_payment_id' );
+
+		$payment = get_pronamic_payment( $payment_id );
+
+		Plugin::update_payment( $payment );
 	}
 }
