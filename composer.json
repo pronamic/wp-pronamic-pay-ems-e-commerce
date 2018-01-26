@@ -3,7 +3,7 @@
 	"description": "EMS e-Commerce Gateway driver for the WordPress payment processing library.",
 	"keywords": ["wordpress", "wp", "pay", "ems", "gateway", "pronamic"],
 	"homepage": "http://www.wp-pay.org/gateways/ems-e-commerce/",
-	"license": "GPL-3.0+",
+	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
 			"name": "Pronamic",
