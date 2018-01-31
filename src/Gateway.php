@@ -19,15 +19,6 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  */
 class Gateway extends Core_Gateway {
 	/**
-	 * The EMS e-Commerce client object
-	 *
-	 * @var Client
-	 */
-	private $client;
-
-	/////////////////////////////////////////////////
-
-	/**
 	 * Constructs and initializes an EMS e-Commerce gateway
 	 *
 	 * @param Config $config
