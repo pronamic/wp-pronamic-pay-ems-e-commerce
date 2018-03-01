@@ -1,7 +1,8 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS_ECommerce;
+
 use Pronamic\WordPress\Pay\Core\Statuses as Core_Statuses;
-use Pronamic\WordPress\Pay\Gateways\EMS_ECommerce\Statuses;
 
 /**
  * Title: EMS e-Commerce Gateway statuses constants tests
@@ -13,7 +14,7 @@ use Pronamic\WordPress\Pay\Gateways\EMS_ECommerce\Statuses;
  * @version 1.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_StatusesTest extends PHPUnit_Framework_TestCase {
+class StatusesTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test transform.
 	 *

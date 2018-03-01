@@ -1,7 +1,8 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS_ECommerce;
+
 use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
-use Pronamic\WordPress\Pay\Gateways\EMS_ECommerce\PaymentMethods;
 
 /**
  * Title: EMS e-Commerce Gateway payment methods tests
@@ -13,7 +14,7 @@ use Pronamic\WordPress\Pay\Gateways\EMS_ECommerce\PaymentMethods;
  * @version 1.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethodsTest extends PHPUnit_Framework_TestCase {
+class PaymentMethodsTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test transform.
 	 *
