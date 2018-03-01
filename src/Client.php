@@ -35,8 +35,6 @@ class Client {
 	 */
 	const ACTION_URL_PRODUCTION = 'https://www.ipg-online.com/connect/gateway/processing';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Hash algorithm SHA256 indicator
 	 *
@@ -44,16 +42,12 @@ class Client {
 	 */
 	const HASH_ALGORITHM_SHA256 = 'sha256';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The action URL
 	 *
 	 * @var string
 	 */
 	private $action_url;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Currency code in ISO 4217-Numeric codification
@@ -85,8 +79,6 @@ class Client {
 	 * @var string N12
 	 */
 	private $amount;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Notification URL
@@ -124,16 +116,12 @@ class Client {
 	 */
 	private $payment_id;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Shared secret
 	 *
 	 * @var string
 	 */
 	private $secret;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Issuer ID.
@@ -142,22 +130,16 @@ class Client {
 	 */
 	private $issuer_id;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Transaction datetime.
 	 */
 	private $transaction_datetime;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Constructs and initalize an EMS e-Commerce object
 	 */
 	public function __construct() {
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the action URL
@@ -177,8 +159,6 @@ class Client {
 		$this->action_url = $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the currency numeric code
 	 *
@@ -197,8 +177,6 @@ class Client {
 		$this->currency_numeric_code = $code;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get storename
 	 *
@@ -216,8 +194,6 @@ class Client {
 	public function set_storename( $storename ) {
 		$this->storename = $storename;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get normal return URL
@@ -238,8 +214,6 @@ class Client {
 	public function set_return_url( $return_url ) {
 		$this->return_url = $return_url;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get amount
@@ -268,8 +242,6 @@ class Client {
 		$this->amount = $amount;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get notification URL
 	 *
@@ -287,8 +259,6 @@ class Client {
 	public function set_notification_url( $notification_url ) {
 		$this->notification_url = $notification_url;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get language.
@@ -308,8 +278,6 @@ class Client {
 		$this->language = $language;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Set the payment method.
 	 *
@@ -327,8 +295,6 @@ class Client {
 	public function get_payment_method() {
 		return $this->payment_method;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get order ID
@@ -348,8 +314,6 @@ class Client {
 		$this->order_id = $order_id;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get payment ID
 	 *
@@ -367,8 +331,6 @@ class Client {
 	public function set_payment_id( $payment_id ) {
 		$this->payment_id = $payment_id;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the transaction datetime.
@@ -388,8 +350,6 @@ class Client {
 	public function set_transaction_datetime( DateTime $datetime ) {
 		$this->transaction_datetime = $datetime;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get data
@@ -432,8 +392,6 @@ class Client {
 		return $data;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get shared secret
 	 *
@@ -451,8 +409,6 @@ class Client {
 	public function set_secret( $secret ) {
 		$this->secret = $secret;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get hash
@@ -488,8 +444,6 @@ class Client {
 		return hash( self::HASH_ALGORITHM_SHA256, $value );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get fields
 	 *
@@ -503,8 +457,6 @@ class Client {
 
 		return $fields;
 	}
-
-	//////////////////////////////////////////////////
 
 	public function set_issuer_id( $issuer_id ) {
 		$this->issuer_id = $issuer_id;
