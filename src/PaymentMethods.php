@@ -71,8 +71,6 @@ class PaymentMethods {
 	 */
 	const SOFORT = 'sofort';
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Transform WordPress payment method to EMS payment method.
 	 *

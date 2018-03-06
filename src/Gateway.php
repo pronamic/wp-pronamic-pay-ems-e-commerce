@@ -44,8 +44,6 @@ class Gateway extends Core_Gateway {
 		$this->client->set_secret( $config->secret );
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get supported payment methods.
 	 *
@@ -59,8 +57,6 @@ class Gateway extends Core_Gateway {
 			Core_PaymentMethods::SOFORT,
 		);
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Start
@@ -91,8 +87,6 @@ class Gateway extends Core_Gateway {
 		$this->client->set_payment_method( $payment_method );
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get the output HTML
 	 *
@@ -102,8 +96,6 @@ class Gateway extends Core_Gateway {
 	public function get_output_fields() {
 		return $this->client->get_fields();
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Update status of the specified payment

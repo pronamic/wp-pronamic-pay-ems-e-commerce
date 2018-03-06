@@ -22,8 +22,6 @@ class Statuses {
 	 */
 	const OPEN = 'open';
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Transform an EMS e-Commerce state to an more global status
 	 *
