@@ -1,6 +1,6 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\EMS_ECommerce;
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
 use DateTime;
 use DateTimeZone;
