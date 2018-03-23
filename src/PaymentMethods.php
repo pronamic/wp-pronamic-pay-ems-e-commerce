@@ -76,21 +76,25 @@ class PaymentMethods {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $payment_method
+	 * @param string $payment_method Payment method.
 	 *
 	 * @return string
 	 */
 	public static function transform( $payment_method ) {
 		switch ( $payment_method ) {
-			case Core_PaymentMethods::BANCONTACT :
-				return PaymentMethods::BANCONTACT;
-			case Core_PaymentMethods::IDEAL :
-				return PaymentMethods::IDEAL;
-			case Core_PaymentMethods::PAYPAL :
-				return PaymentMethods::PAYPAL;
-			case Core_PaymentMethods::SOFORT :
-				return PaymentMethods::SOFORT;
-			default :
+			case Core_PaymentMethods::BANCONTACT:
+				return self::BANCONTACT;
+
+			case Core_PaymentMethods::IDEAL:
+				return self::IDEAL;
+
+			case Core_PaymentMethods::PAYPAL:
+				return self::PAYPAL;
+
+			case Core_PaymentMethods::SOFORT:
+				return self::SOFORT;
+
+			default:
 				return null;
 		}
 	}
