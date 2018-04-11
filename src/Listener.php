@@ -24,6 +24,16 @@ class Listener {
 
 		$payment = get_pronamic_payment( $payment_id );
 
+		// Add note.
+		$note = sprintf(
+			/* translators: %s: EMS */
+			__( 'Webhook requested by %s.', 'pronamic_ideal' ),
+			__( 'EMS', 'pronamic_ideal' )
+		);
+
+		$payment->add_note( $note );
+
+		// Update payment.
 		Plugin::update_payment( $payment );
 	}
 }
