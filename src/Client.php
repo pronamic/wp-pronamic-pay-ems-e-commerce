@@ -2,8 +2,8 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
-use DateTime;
-use DateTimeZone;
+use Pronamic\WordPress\Pay\Core\DateTime;
+use Pronamic\WordPress\Pay\Core\DateTimeZone;
 use Pronamic\WordPress\Pay\Core\Util;
 
 /**
