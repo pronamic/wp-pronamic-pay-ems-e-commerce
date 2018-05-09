@@ -13,7 +13,7 @@ use Pronamic\WordPress\Pay\Core\Util;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.3
+ * @version 2.0.0
  * @since 1.0.0
  */
 class Client {
