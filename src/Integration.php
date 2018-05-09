@@ -1,16 +1,20 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\Pay\Gateways\Common\AbstractIntegration;
+
 /**
  * Title: EMS e-Commerce integration
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Integration extends Pronamic_WP_Pay_Gateways_AbstractIntegration {
+class Integration extends AbstractIntegration {
 	public function __construct() {
 		$this->id            = 'ems-ecommerce';
 		$this->name          = 'EMS e-Commerce';
@@ -22,7 +26,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Integration extends Pronamic_WP_Pay
 		$this->provider      = 'ems';
 
 		// Actions
-		$function = array( 'Pronamic_WP_Pay_Gateways_EMS_ECommerce_Listener', 'listen' );
+		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
 
 		if ( ! has_action( 'wp_loaded', $function ) ) {
 			add_action( 'wp_loaded', $function );
@@ -30,11 +34,11 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Integration extends Pronamic_WP_Pay
 	}
 
 	public function get_config_factory_class() {
-		return 'Pronamic_WP_Pay_Gateways_EMS_ECommerce_ConfigFactory';
+		return __NAMESPACE__ . '\ConfigFactory';
 	}
 
 	public function get_settings_class() {
-		return 'Pronamic_WP_Pay_Gateways_EMS_ECommerce_Settings';
+		return __NAMESPACE__ . '\Settings';
 	}
 
 	/**

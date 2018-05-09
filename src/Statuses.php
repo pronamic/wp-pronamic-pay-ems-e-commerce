@@ -1,16 +1,20 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\Pay\Core\Statuses as Core_Statuses;
+
 /**
  * Title: EMS e-Commerce Gateway statuses constants
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Remco Tolsma
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_Statuses {
+class Statuses {
 	/**
 	 * Open
 	 *
@@ -18,17 +22,18 @@ class Pronamic_WP_Pay_Gateways_EMS_Statuses {
 	 */
 	const OPEN = 'open';
 
-	/////////////////////////////////////////////////
-
 	/**
-	 * Transform an Mollie state to an more global status
+	 * Transform an EMS e-Commerce state to an more global status
 	 *
 	 * @param string $status
+	 *
+	 * @return null|string
 	 */
 	public static function transform( $status ) {
 		switch ( $status ) {
 			case self::OPEN :
-				return Pronamic_WP_Pay_Statuses::OPEN;
+				return Core_Statuses::OPEN;
+
 			default:
 				return null;
 		}

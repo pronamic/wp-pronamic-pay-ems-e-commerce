@@ -1,16 +1,20 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
+
 /**
  * Title: EMS e-Commerce payment methods
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.4
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
+class PaymentMethods {
 	/**
 	 * Constant for the Bancontact payment method.
 	 *
@@ -67,26 +71,30 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods {
 	 */
 	const SOFORT = 'sofort';
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Transform WordPress payment method to EMS payment method.
 	 *
 	 * @since 1.0.0
-	 * @param string $method
+	 *
+	 * @param string $payment_method Payment method.
+	 *
 	 * @return string
 	 */
 	public static function transform( $payment_method ) {
 		switch ( $payment_method ) {
-			case Pronamic_WP_Pay_PaymentMethods::BANCONTACT :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::BANCONTACT;
-			case Pronamic_WP_Pay_PaymentMethods::IDEAL :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::IDEAL;
-			case Pronamic_WP_Pay_PaymentMethods::PAYPAL :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::PAYPAL;
-			case Pronamic_WP_Pay_PaymentMethods::SOFORT :
-				return Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::SOFORT;
-			default :
+			case Core_PaymentMethods::BANCONTACT:
+				return self::BANCONTACT;
+
+			case Core_PaymentMethods::IDEAL:
+				return self::IDEAL;
+
+			case Core_PaymentMethods::PAYPAL:
+				return self::PAYPAL;
+
+			case Core_PaymentMethods::SOFORT:
+				return self::SOFORT;
+
+			default:
 				return null;
 		}
 	}

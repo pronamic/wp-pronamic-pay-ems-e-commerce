@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 
 <ruleset name="WordPress Pay EMS e-Commerce Gateway rules">
-	<rule ref="WordPress">	
+	<config name="installed_paths" value="vendor/wp-coding-standards/wpcs" />
+
+	<rule ref="WordPress">
 		<exclude name="Generic.Files.LowercasedFilename.NotFound" />
 
 		<exclude name="Squiz.Commenting" />

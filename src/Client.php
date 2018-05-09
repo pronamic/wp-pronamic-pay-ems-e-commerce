@@ -1,16 +1,22 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\DateTime\DateTime;
+use Pronamic\WordPress\DateTime\DateTimeZone;
+use Pronamic\WordPress\Pay\Core\Util;
+
 /**
  * Title: EMS e-Commerce client
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.3
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
+class Client {
 	/**
 	 * Action URL to start a payment request in the test environment,
 	 * the POST data is sent to.
@@ -29,8 +35,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	const ACTION_URL_PRODUCTION = 'https://www.ipg-online.com/connect/gateway/processing';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Hash algorithm SHA256 indicator
 	 *
@@ -38,16 +42,12 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	const HASH_ALGORITHM_SHA256 = 'sha256';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The action URL
 	 *
 	 * @var string
 	 */
 	private $action_url;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Currency code in ISO 4217-Numeric codification
@@ -79,8 +79,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 * @var string N12
 	 */
 	private $amount;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Notification URL
@@ -118,16 +116,12 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	private $payment_id;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Shared secret
 	 *
 	 * @var string
 	 */
 	private $secret;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Issuer ID.
@@ -136,14 +130,10 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	private $issuer_id;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Transaction datetime.
 	 */
-	private $transation_datetime;
-
-	//////////////////////////////////////////////////
+	private $transaction_datetime;
 
 	/**
 	 * Constructs and initalize an EMS e-Commerce object
@@ -151,12 +141,10 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	public function __construct() {
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the action URL
 	 *
-	 * @return the action URL
+	 * @return string action URL
 	 */
 	public function get_action_url() {
 		return $this->action_url;
@@ -170,8 +158,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	public function set_action_url( $url ) {
 		$this->action_url = $url;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the currency numeric code
@@ -191,8 +177,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		$this->currency_numeric_code = $code;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get storename
 	 *
@@ -210,8 +194,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	public function set_storename( $storename ) {
 		$this->storename = $storename;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get normal return URL
@@ -233,8 +215,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		$this->return_url = $return_url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get amount
 	 *
@@ -250,7 +230,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 * @return int
 	 */
 	public function get_formatted_amount() {
-		return Pronamic_WP_Pay_Util::amount_to_cents( $this->amount );
+		return Util::amount_to_cents( $this->amount );
 	}
 
 	/**
@@ -261,8 +241,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	public function set_amount( $amount ) {
 		$this->amount = $amount;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get notification URL
@@ -282,8 +260,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		$this->notification_url = $notification_url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get language.
 	 *
@@ -301,8 +277,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	public function set_language( $language ) {
 		$this->language = $language;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Set the payment method.
@@ -322,8 +296,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		return $this->payment_method;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get order ID
 	 *
@@ -341,8 +313,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	public function set_order_id( $order_id ) {
 		$this->order_id = $order_id;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get payment ID
@@ -362,27 +332,24 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		$this->payment_id = $payment_id;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
-	 * Get the transaaction datetime.
+	 * Get the transaction datetime.
 	 *
 	 * @param boolean $createNew indicator for creating a new expire date
+	 *
 	 * @return
 	 */
-	public function get_transation_datetime( $create_new = false ) {
-		if ( null === $this->transation_datetime || $create_new ) {
-			$this->transation_datetime = new DateTime( null, new DateTimeZone( 'UTC' ) );
+	public function get_transaction_datetime( $create_new = false ) {
+		if ( null === $this->transaction_datetime || $create_new ) {
+			$this->transaction_datetime = new DateTime( null, new DateTimeZone( 'UTC' ) );
 		}
 
-		return $this->transation_datetime;
+		return $this->transaction_datetime;
 	}
 
 	public function set_transaction_datetime( DateTime $datetime ) {
-		$this->transation_datetime = $datetime;
+		$this->transaction_datetime = $datetime;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get data
@@ -396,7 +363,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 			// According the EMS documentation the timezone should be in `Area/Location` notation, but it seems like `UTC` is also working.
 			'timezone'       => 'UTC',
 			// In WordPress, PHP's `time()` will always return `UTC` and is the same as calling `current_time( 'timestamp', true )`.
-			'txndatetime'    => $this->get_transation_datetime()->format( 'Y:m:d-H:i:s' ),
+			'txndatetime'    => $this->get_transaction_datetime()->format( 'Y:m:d-H:i:s' ),
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
@@ -425,8 +392,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 		return $data;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get shared secret
 	 *
@@ -444,8 +409,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	public function set_secret( $secret ) {
 		$this->secret = $secret;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get hash
@@ -476,13 +439,10 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 	 */
 	public static function compute_hash( $values ) {
 		$value = implode( '', $values );
-
 		$value = bin2hex( $value );
 
 		return hash( self::HASH_ALGORITHM_SHA256, $value );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get fields
@@ -497,8 +457,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client {
 
 		return $fields;
 	}
-
-	//////////////////////////////////////////////////
 
 	public function set_issuer_id( $issuer_id ) {
 		$this->issuer_id = $issuer_id;

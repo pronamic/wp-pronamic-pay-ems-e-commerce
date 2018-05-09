@@ -1,52 +1,48 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
+use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
+use Pronamic\WordPress\Pay\Core\Statuses;
+use Pronamic\WordPress\Pay\Payments\Payment;
+
 /**
  * Title: EMS e-Commerce
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.4
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gateway {
-	/**
-	 * The EMS e-Commerce client object
-	 *
-	 * @var Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client
-	 */
-	private $client;
-
-	/////////////////////////////////////////////////
-
+class Gateway extends Core_Gateway {
 	/**
 	 * Constructs and initializes an EMS e-Commerce gateway
 	 *
-	 * @param Pronamic_WP_Pay_Gateways_EMS_ECommerce_Config $config
+	 * @param Config $config
 	 */
-	public function __construct( Pronamic_WP_Pay_Gateways_EMS_ECommerce_Config $config ) {
+	public function __construct( Config $config ) {
 		parent::__construct( $config );
 
-		$this->set_method( Pronamic_WP_Pay_Gateway::METHOD_HTML_FORM );
+		$this->set_method( Gateway::METHOD_HTML_FORM );
 		$this->set_has_feedback( true );
 		$this->set_amount_minimum( 0.01 );
 
 		// Client
-		$this->client = new Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client();
+		$this->client = new Client();
 
-		$action_url = Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client::ACTION_URL_PRODUCTION;
+		$action_url = Client::ACTION_URL_PRODUCTION;
 
-		if ( Pronamic_IDeal_IDeal::MODE_TEST === $config->mode ) {
-			$action_url = Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client::ACTION_URL_TEST;
+		if ( Gateway::MODE_TEST === $config->mode ) {
+			$action_url = Client::ACTION_URL_TEST;
 		}
 
 		$this->client->set_action_url( $action_url );
 		$this->client->set_storename( $config->storename );
 		$this->client->set_secret( $config->secret );
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get supported payment methods.
@@ -55,34 +51,33 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 	 */
 	public function get_supported_payment_methods() {
 		return array(
-			Pronamic_WP_Pay_PaymentMethods::BANCONTACT,
-			Pronamic_WP_Pay_PaymentMethods::IDEAL,
-			Pronamic_WP_Pay_PaymentMethods::PAYPAL,
-			Pronamic_WP_Pay_PaymentMethods::SOFORT,
+			Core_PaymentMethods::BANCONTACT,
+			Core_PaymentMethods::IDEAL,
+			Core_PaymentMethods::PAYPAL,
+			Core_PaymentMethods::SOFORT,
 		);
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Start
 	 *
 	 * @see Pronamic_WP_Pay_Gateway::start()
-	 * @param Pronamic_Pay_Payment $payment
+	 *
+	 * @param Payment $payment
 	 */
-	public function start( Pronamic_Pay_Payment $payment ) {
+	public function start( Payment $payment ) {
 		$payment->set_action_url( $this->client->get_action_url() );
 
 		$this->client->set_payment_id( $payment->get_id() );
 		$this->client->set_language( $payment->get_locale() );
 		$this->client->set_currency_numeric_code( $payment->get_currency_numeric_code() );
-		$this->client->set_order_id( Pronamic_WP_Pay_Gateways_EMS_ECommerce_Util::get_order_id( $this->config->order_id, $payment ) );
+		$this->client->set_order_id( Util::get_order_id( $this->config->order_id, $payment ) );
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
-		$this->client->set_amount( $payment->get_amount() );
+		$this->client->set_amount( $payment->get_amount()->get_amount() );
 		$this->client->set_issuer_id( $payment->get_issuer() );
 
-		$payment_method = Pronamic_WP_Pay_Gateways_EMS_ECommerce_PaymentMethods::transform( $payment->get_method() );
+		$payment_method = PaymentMethods::transform( $payment->get_method() );
 
 		if ( null === $payment_method && '' !== $payment->get_method() ) {
 			// Leap of faith if the WordPress payment method could not transform to a EMS method?
@@ -91,8 +86,6 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 
 		$this->client->set_payment_method( $payment_method );
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get the output HTML
@@ -104,14 +97,12 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 		return $this->client->get_fields();
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Update status of the specified payment
 	 *
-	 * @param Pronamic_Pay_Payment $payment
+	 * @param Payment $payment
 	 */
-	public function update_status( Pronamic_Pay_Payment $payment ) {
+	public function update_status( Payment $payment ) {
 		$approval_code = filter_input( INPUT_POST, 'approval_code', FILTER_SANITIZE_STRING );
 
 		$input_hash = filter_input( INPUT_POST, 'response_hash' );
@@ -138,7 +129,7 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 			);
 		}
 
-		$hash = Pronamic_WP_Pay_Gateways_EMS_ECommerce_Client::compute_hash( $hash_values );
+		$hash = Client::compute_hash( $hash_values );
 
 		// Check if the posted hash is equal to the calculated response or notification hash
 		if ( 0 === strcasecmp( $input_hash, $hash ) ) {
@@ -146,22 +137,22 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway extends Pronamic_WP_Pay_Gat
 
 			switch ( $response_code ) {
 				case 'Y' :
-					$status = Pronamic_WP_Pay_Statuses::SUCCESS;
+					$status = Statuses::SUCCESS;
 
 					break;
 				case 'N':
-					$status = Pronamic_WP_Pay_Statuses::FAILURE;
+					$status = Statuses::FAILURE;
 
 					$fail_code = filter_input( INPUT_POST, 'fail_rc', FILTER_SANITIZE_NUMBER_INT );
 
 					if ( '5993' === $fail_code ) {
-						$status = Pronamic_WP_Pay_Statuses::CANCELLED;
+						$status = Statuses::CANCELLED;
 					}
 
 					break;
 
 				default:
-					$status = Pronamic_WP_Pay_Statuses::OPEN;
+					$status = Statuses::OPEN;
 
 					break;
 			}

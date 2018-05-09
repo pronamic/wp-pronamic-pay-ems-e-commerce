@@ -1,23 +1,23 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\Pay\Core\GatewayConfig;
+
 /**
  * Title: EMS e-Commerce config
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Config extends Pronamic_WP_Pay_GatewayConfig {
+class Config extends GatewayConfig {
 	public $storename;
 
 	public $secret;
 
 	public $order_id;
-
-	public function get_gateway_class() {
-		return 'Pronamic_WP_Pay_Gateways_EMS_ECommerce_Gateway';
-	}
 }

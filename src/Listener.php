@@ -1,23 +1,39 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\Pay\Plugin;
+
 /**
  * Title: EMS e-Commerce listener
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Listener implements Pronamic_Pay_Gateways_ListenerInterface {
+class Listener {
 	public static function listen() {
-		if ( filter_has_var( INPUT_POST, 'ems_notify_payment_id' ) ) {
-			$payment_id = filter_input( INPUT_POST, 'ems_notify_payment_id' );
-
-			$payment = get_pronamic_payment( $payment_id );
-
-			Pronamic_WP_Pay_Plugin::update_payment( $payment );
+		if ( ! filter_has_var( INPUT_POST, 'ems_notify_payment_id' ) ) {
+			return;
 		}
+
+		$payment_id = filter_input( INPUT_POST, 'ems_notify_payment_id' );
+
+		$payment = get_pronamic_payment( $payment_id );
+
+		// Add note.
+		$note = sprintf(
+			/* translators: %s: EMS */
+			__( 'Webhook requested by %s.', 'pronamic_ideal' ),
+			__( 'EMS', 'pronamic_ideal' )
+		);
+
+		$payment->add_note( $note );
+
+		// Update payment.
+		Plugin::update_payment( $payment );
 	}
 }

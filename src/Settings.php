@@ -1,16 +1,20 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
+
+use Pronamic\WordPress\Pay\Core\GatewaySettings;
+
 /**
  * Title: EMS e-Commerce gateway settings
  * Description:
- * Copyright: Copyright (c) 2005 - 2017
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 1.0.3
+ * @version 2.0.0
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Settings extends Pronamic_WP_Pay_GatewaySettings {
+class Settings extends GatewaySettings {
 	public function __construct() {
 		add_filter( 'pronamic_pay_gateway_sections', array( $this, 'sections' ) );
 		add_filter( 'pronamic_pay_gateway_fields', array( $this, 'fields' ) );
@@ -37,30 +41,30 @@ class Pronamic_WP_Pay_Gateways_EMS_ECommerce_Settings extends Pronamic_WP_Pay_Ga
 	public function fields( array $fields ) {
 		// Storename
 		$fields[] = array(
-			'filter'      => FILTER_UNSAFE_RAW,
-			'section'     => 'ems_ecommerce',
-			'meta_key'    => '_pronamic_gateway_ems_ecommerce_storename',
-			'title'       => _x( 'Storename', 'ems', 'pronamic_ideal' ),
-			'type'        => 'text',
-			'classes'     => array( 'code' ),
+			'filter'   => FILTER_UNSAFE_RAW,
+			'section'  => 'ems_ecommerce',
+			'meta_key' => '_pronamic_gateway_ems_ecommerce_storename',
+			'title'    => _x( 'Storename', 'ems', 'pronamic_ideal' ),
+			'type'     => 'text',
+			'classes'  => array( 'code' ),
 		);
 
 		// Shared secret
 		$fields[] = array(
-			'filter'      => FILTER_UNSAFE_RAW,
-			'section'     => 'ems_ecommerce',
-			'meta_key'    => '_pronamic_gateway_ems_ecommerce_secret',
-			'title'       => _x( 'Shared Secret', 'ems', 'pronamic_ideal' ),
-			'type'        => 'text',
-			'classes'     => array( 'large-text', 'code' ),
+			'filter'   => FILTER_UNSAFE_RAW,
+			'section'  => 'ems_ecommerce',
+			'meta_key' => '_pronamic_gateway_ems_ecommerce_secret',
+			'title'    => _x( 'Shared Secret', 'ems', 'pronamic_ideal' ),
+			'type'     => 'text',
+			'classes'  => array( 'large-text', 'code' ),
 		);
 
 		// Transaction feedback
 		$fields[] = array(
-			'section'     => 'ems_ecommerce',
-			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
-			'type'        => 'description',
-			'html'        => sprintf(
+			'section' => 'ems_ecommerce',
+			'title'   => __( 'Transaction feedback', 'pronamic_ideal' ),
+			'type'    => 'description',
+			'html'    => sprintf(
 				'<span class="dashicons dashicons-yes"></span> %s',
 				__( 'Payment status updates will be processed without any additional configuration.', 'pronamic_ideal' )
 			),

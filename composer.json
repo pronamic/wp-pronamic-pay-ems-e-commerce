@@ -3,7 +3,7 @@
 	"description": "EMS e-Commerce Gateway driver for the WordPress payment processing library.",
 	"keywords": ["wordpress", "wp", "pay", "ems", "gateway", "pronamic"],
 	"homepage": "http://www.wp-pay.org/gateways/ems-e-commerce/",
-	"license": "GPL-3.0+",
+	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
 			"name": "Pronamic",
@@ -24,7 +24,9 @@
 		"source": "https://github.com/wp-pay-gateways/ems-e-commerce"
 	},
 	"autoload": {
-		"classmap": ["src/"]
+		"psr-4": {
+			"Pronamic\\WordPress\\Pay\\Gateways\\EMS\\ECommerce\\": "src/"
+		}
 	},
 	"config": {
 		"platform": {
@@ -33,8 +35,8 @@
 	},
 	"require": {
 		"php": "^5.3",
-		"wp-pay/core": "^1.3",
-		"wp-pay-gateways/common": "^1.0.2"
+		"wp-pay/core": "^2.0",
+		"wp-pay-gateways/common": "^2.0"
 	},
 	"require-dev": {
 		"phpmd/phpmd": "^2.2.3",
@@ -43,10 +45,5 @@
 		"squizlabs/php_codesniffer": "^2.7",
 		"wp-coding-standards/wpcs": "^0.10.0",
 		"wp-cli/wp-cli": "^0.21.1"
-	},
-	"scripts": {
-		"post-autoload-dump": [
-			"bin/install-wpcs"
-		]
 	}
 }
