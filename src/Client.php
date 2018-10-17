@@ -4,7 +4,6 @@ namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
 use Pronamic\WordPress\DateTime\DateTime;
 use Pronamic\WordPress\DateTime\DateTimeZone;
-use Pronamic\WordPress\Pay\Core\Util;
 
 /**
  * Title: EMS e-Commerce client
@@ -225,18 +224,9 @@ class Client {
 	}
 
 	/**
-	 * Get formmated amount
-	 *
-	 * @return int
-	 */
-	public function get_formatted_amount() {
-		return Util::amount_to_cents( $this->amount );
-	}
-
-	/**
 	 * Set amount
 	 *
-	 * @param float $amount
+	 * @param float $amount Amount.
 	 */
 	public function set_amount( $amount ) {
 		$this->amount = $amount;
@@ -367,7 +357,7 @@ class Client {
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
-			'chargetotal'    => number_format( ( $this->get_formatted_amount() / 100 ), 2, '.', '' ),
+			'chargetotal'    => number_format( ( $this->get_amount() / 100 ), 2, '.', '' ),
 			'currency'       => $this->get_currency_numeric_code(),
 		);
 
