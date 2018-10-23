@@ -51,8 +51,8 @@ class Client {
 	/**
 	 * Currency code in ISO 4217-Numeric codification
 	 *
-	 * @doc http://en.wikipedia.org/wiki/ISO_4217
-	 * @doc http://www.iso.org/iso/support/faqs/faqs_widely_used_standards/widely_used_standards_other/currency_codes/currency_codes_list-1.htm
+	 * @link https://en.wikipedia.org/wiki/ISO_4217
+	 * @link http://www.iso.org/iso/support/faqs/faqs_widely_used_standards/widely_used_standards_other/currency_codes/currency_codes_list-1.htm
 	 *
 	 * @var string N3
 	 */
@@ -89,7 +89,7 @@ class Client {
 	/**
 	 * Language in ISO 639‐1 Alpha2
 	 *
-	 * @doc http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+	 * @link https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 	 * @var string A2
 	 */
 	private $language;
@@ -131,6 +131,8 @@ class Client {
 
 	/**
 	 * Transaction datetime.
+	 *
+	 * @var string
 	 */
 	private $transaction_datetime;
 
@@ -152,7 +154,7 @@ class Client {
 	/**
 	 * Set the action URL
 	 *
-	 * @param string $url an URL
+	 * @param string $url Action URL.
 	 */
 	public function set_action_url( $url ) {
 		$this->action_url = $url;
@@ -170,7 +172,7 @@ class Client {
 	/**
 	 * Set the currency code
 	 *
-	 * @param string $code
+	 * @param string $code Currency numeric code.
 	 */
 	public function set_currency_numeric_code( $code ) {
 		$this->currency_numeric_code = $code;
@@ -188,7 +190,7 @@ class Client {
 	/**
 	 * Set the storename
 	 *
-	 * @param string $storename
+	 * @param string $storename Storename.
 	 */
 	public function set_storename( $storename ) {
 		$this->storename = $storename;
@@ -208,7 +210,7 @@ class Client {
 	 *
 	 * LET OP! De URL mag geen parameters bevatten.
 	 *
-	 * @param string $return_url
+	 * @param string $return_url Return URL.
 	 */
 	public function set_return_url( $return_url ) {
 		$this->return_url = $return_url;
@@ -244,7 +246,7 @@ class Client {
 	/**
 	 * Set notification URL
 	 *
-	 * @param string $notification_url
+	 * @param string $notification_url Notification URL.
 	 */
 	public function set_notification_url( $notification_url ) {
 		$this->notification_url = $notification_url;
@@ -262,7 +264,7 @@ class Client {
 	/**
 	 * Set language.
 	 *
-	 * @param string $language
+	 * @param string $language Language.
 	 */
 	public function set_language( $language ) {
 		$this->language = $language;
@@ -271,7 +273,7 @@ class Client {
 	/**
 	 * Set the payment method.
 	 *
-	 * @param string $payment_method
+	 * @param string $payment_method Payment method.
 	 */
 	public function set_payment_method( $payment_method ) {
 		$this->payment_method = $payment_method;
@@ -298,7 +300,7 @@ class Client {
 	/**
 	 * Set order ID
 	 *
-	 * @param string $order_id
+	 * @param string $order_id Order ID.
 	 */
 	public function set_order_id( $order_id ) {
 		$this->order_id = $order_id;
@@ -316,7 +318,7 @@ class Client {
 	/**
 	 * Set payment ID
 	 *
-	 * @param int $payment_id
+	 * @param int $payment_id Payment ID.
 	 */
 	public function set_payment_id( $payment_id ) {
 		$this->payment_id = $payment_id;
@@ -325,9 +327,9 @@ class Client {
 	/**
 	 * Get the transaction datetime.
 	 *
-	 * @param boolean $createNew indicator for creating a new expire date
+	 * @param boolean $create_new Indicator for creating a new expire date.
 	 *
-	 * @return
+	 * @return DateTime
 	 */
 	public function get_transaction_datetime( $create_new = false ) {
 		if ( null === $this->transaction_datetime || $create_new ) {
@@ -337,6 +339,11 @@ class Client {
 		return $this->transaction_datetime;
 	}
 
+	/**
+	 * Set transaction datetime.
+	 *
+	 * @param DateTime $datetime Transaction date time.
+	 */
 	public function set_transaction_datetime( DateTime $datetime ) {
 		$this->transaction_datetime = $datetime;
 	}
@@ -344,10 +351,10 @@ class Client {
 	/**
 	 * Get data
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function get_data() {
-		// Required fields for payment request
+		// Required fields for payment request.
 		$required_fields = array(
 			'txntype'        => 'sale',
 			// According the EMS documentation the timezone should be in `Area/Location` notation, but it seems like `UTC` is also working.
@@ -361,7 +368,7 @@ class Client {
 			'currency'       => $this->get_currency_numeric_code(),
 		);
 
-		// Optional fields for payment request
+		// Optional fields for payment request.
 		$optional_fields = array(
 			'oid'                        => $this->get_order_id(),
 			'language'                   => $this->get_language(),
@@ -373,10 +380,10 @@ class Client {
 			'ems_notify_payment_id'      => $this->get_payment_id(),
 		);
 
-		// @see http://briancray.com/2009/04/25/remove-null-values-php-arrays/
+		// @link http://briancray.com/2009/04/25/remove-null-values-php-arrays/
 		$optional_fields = array_filter( $optional_fields );
 
-		// Data
+		// Data.
 		$data = $required_fields + $optional_fields;
 
 		return $data;
@@ -392,9 +399,11 @@ class Client {
 	}
 
 	/**
-	 * Set shared secret
+	 * Set shared secret.
 	 *
-	 * @return string
+	 * @param string $secret Secret.
+	 *
+	 * @return void
 	 */
 	public function set_secret( $secret ) {
 		$this->secret = $secret;
@@ -423,7 +432,7 @@ class Client {
 	/**
 	 * Compute hash
 	 *
-	 * @param array $values
+	 * @param array $values Values to compute hash for.
 	 *
 	 * @return string
 	 */
@@ -448,10 +457,20 @@ class Client {
 		return $fields;
 	}
 
+	/**
+	 * Set issuer ID.
+	 *
+	 * @param string $issuer_id Issuer ID.
+	 */
 	public function set_issuer_id( $issuer_id ) {
 		$this->issuer_id = $issuer_id;
 	}
 
+	/**
+	 * Get issuer ID.
+	 *
+	 * @return string
+	 */
 	public function get_issuer_id() {
 		return $this->issuer_id;
 	}

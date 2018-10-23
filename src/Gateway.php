@@ -28,19 +28,19 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Constructs and initializes an EMS e-Commerce gateway
 	 *
-	 * @param Config $config
+	 * @param Config $config Config.
 	 */
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
 
-		$this->set_method( Gateway::METHOD_HTML_FORM );
+		$this->set_method( self::METHOD_HTML_FORM );
 
-		// Client
+		// Client.
 		$this->client = new Client();
 
 		$action_url = Client::ACTION_URL_PRODUCTION;
 
-		if ( Gateway::MODE_TEST === $config->mode ) {
+		if ( self::MODE_TEST === $config->mode ) {
 			$action_url = Client::ACTION_URL_TEST;
 		}
 
@@ -68,7 +68,7 @@ class Gateway extends Core_Gateway {
 	 *
 	 * @see Pronamic_WP_Pay_Gateway::start()
 	 *
-	 * @param Payment $payment
+	 * @param Payment $payment Payment.
 	 */
 	public function start( Payment $payment ) {
 		$payment->set_action_url( $this->client->get_action_url() );
@@ -105,7 +105,7 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Update status of the specified payment
 	 *
-	 * @param Payment $payment
+	 * @param Payment $payment Payment.
 	 */
 	public function update_status( Payment $payment ) {
 		$approval_code = filter_input( INPUT_POST, 'approval_code', FILTER_SANITIZE_STRING );
@@ -136,12 +136,12 @@ class Gateway extends Core_Gateway {
 
 		$hash = Client::compute_hash( $hash_values );
 
-		// Check if the posted hash is equal to the calculated response or notification hash
+		// Check if the posted hash is equal to the calculated response or notification hash.
 		if ( 0 === strcasecmp( $input_hash, $hash ) ) {
 			$response_code = substr( $approval_code, 0, 1 );
 
 			switch ( $response_code ) {
-				case 'Y' :
+				case 'Y':
 					$status = Statuses::SUCCESS;
 
 					break;
@@ -162,7 +162,7 @@ class Gateway extends Core_Gateway {
 					break;
 			}
 
-			// Set the status of the payment
+			// Set the status of the payment.
 			$payment->set_status( $status );
 
 			$labels = array(
