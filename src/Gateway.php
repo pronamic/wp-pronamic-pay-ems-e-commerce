@@ -79,7 +79,7 @@ class Gateway extends Core_Gateway {
 		$this->client->set_order_id( $payment->format_string( $this->config->order_id ) );
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
-		$this->client->set_amount( $payment->get_amount()->get_cents() );
+		$this->client->set_amount( $payment->get_total_amount()->get_cents() );
 		$this->client->set_issuer_id( $payment->get_issuer() );
 
 		$payment_method = PaymentMethods::transform( $payment->get_method() );
