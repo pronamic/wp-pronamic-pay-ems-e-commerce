@@ -11,7 +11,7 @@ use Pronamic\WordPress\Pay\Core\GatewayConfigFactory;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 2.0.0
+ * @version 2.0.1
  * @since 1.0.0
  */
 class ConfigFactory extends GatewayConfigFactory {
@@ -21,6 +21,7 @@ class ConfigFactory extends GatewayConfigFactory {
 		$config->storename = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_storename', true );
 		$config->secret    = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_secret', true );
 		$config->mode      = get_post_meta( $post_id, '_pronamic_gateway_mode', true );
+		$config->order_id  = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_order_id', true );
 
 		return $config;
 	}

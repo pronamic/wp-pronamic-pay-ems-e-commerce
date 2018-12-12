@@ -14,28 +14,33 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 2.0.0
+ * @version 2.0.1
  * @since 1.0.0
  */
 class Gateway extends Core_Gateway {
 	/**
+	 * Client.
+	 *
+	 * @var Client
+	 */
+	protected $client;
+
+	/**
 	 * Constructs and initializes an EMS e-Commerce gateway
 	 *
-	 * @param Config $config
+	 * @param Config $config Config.
 	 */
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
 
-		$this->set_method( Gateway::METHOD_HTML_FORM );
-		$this->set_has_feedback( true );
-		$this->set_amount_minimum( 0.01 );
+		$this->set_method( self::METHOD_HTML_FORM );
 
-		// Client
+		// Client.
 		$this->client = new Client();
 
 		$action_url = Client::ACTION_URL_PRODUCTION;
 
-		if ( Gateway::MODE_TEST === $config->mode ) {
+		if ( self::MODE_TEST === $config->mode ) {
 			$action_url = Client::ACTION_URL_TEST;
 		}
 
@@ -63,20 +68,25 @@ class Gateway extends Core_Gateway {
 	 *
 	 * @see Pronamic_WP_Pay_Gateway::start()
 	 *
-	 * @param Payment $payment
+	 * @param Payment $payment Payment.
 	 */
 	public function start( Payment $payment ) {
 		$payment->set_action_url( $this->client->get_action_url() );
 
 		$this->client->set_payment_id( $payment->get_id() );
-		$this->client->set_language( $payment->get_locale() );
-		$this->client->set_currency_numeric_code( $payment->get_currency_numeric_code() );
-		$this->client->set_order_id( Util::get_order_id( $this->config->order_id, $payment ) );
+		$this->client->set_currency_numeric_code( $payment->get_total_amount()->get_currency()->get_numeric_code() );
+		$this->client->set_order_id( $payment->format_string( $this->config->order_id ) );
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
-		$this->client->set_amount( $payment->get_amount()->get_amount() );
+		$this->client->set_amount( $payment->get_total_amount()->get_cents() );
 		$this->client->set_issuer_id( $payment->get_issuer() );
 
+		// Language.
+		if ( null !== $payment->get_customer() ) {
+			$this->client->set_language( $payment->get_customer()->get_locale() );
+		}
+
+		// Payment method.
 		$payment_method = PaymentMethods::transform( $payment->get_method() );
 
 		if ( null === $payment_method && '' !== $payment->get_method() ) {
@@ -100,7 +110,7 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Update status of the specified payment
 	 *
-	 * @param Payment $payment
+	 * @param Payment $payment Payment.
 	 */
 	public function update_status( Payment $payment ) {
 		$approval_code = filter_input( INPUT_POST, 'approval_code', FILTER_SANITIZE_STRING );
@@ -131,12 +141,12 @@ class Gateway extends Core_Gateway {
 
 		$hash = Client::compute_hash( $hash_values );
 
-		// Check if the posted hash is equal to the calculated response or notification hash
+		// Check if the posted hash is equal to the calculated response or notification hash.
 		if ( 0 === strcasecmp( $input_hash, $hash ) ) {
 			$response_code = substr( $approval_code, 0, 1 );
 
 			switch ( $response_code ) {
-				case 'Y' :
+				case 'Y':
 					$status = Statuses::SUCCESS;
 
 					break;
@@ -157,7 +167,7 @@ class Gateway extends Core_Gateway {
 					break;
 			}
 
-			// Set the status of the payment
+			// Set the status of the payment.
 			$payment->set_status( $status );
 
 			$labels = array(
