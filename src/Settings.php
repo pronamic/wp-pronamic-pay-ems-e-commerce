@@ -15,20 +15,30 @@ use Pronamic\WordPress\Pay\Core\GatewaySettings;
  * @since 1.0.0
  */
 class Settings extends GatewaySettings {
+	/**
+	 * Settings constructor.
+	 */
 	public function __construct() {
 		add_filter( 'pronamic_pay_gateway_sections', array( $this, 'sections' ) );
 		add_filter( 'pronamic_pay_gateway_fields', array( $this, 'fields' ) );
 	}
 
+	/**
+	 * Sections.
+	 *
+	 * @param array $sections Sections.
+	 *
+	 * @return array
+	 */
 	public function sections( array $sections ) {
-		// iDEAL
+		// EMS e-Commerce.
 		$sections['ems_ecommerce'] = array(
 			'title'       => __( 'EMS e-Commerce', 'pronamic_ideal' ),
 			'methods'     => array( 'ems_ecommerce' ),
 			'description' => __( 'Account details are provided by the payment provider after registration. These settings need to match with the payment provider dashboard.', 'pronamic_ideal' ),
 		);
 
-		// Advanced
+		// Advanced.
 		$sections['ems_ecommerce_advanced'] = array(
 			'title'       => __( 'Advanced', 'pronamic_ideal' ),
 			'methods'     => array( 'ems_ecommerce' ),
@@ -38,8 +48,15 @@ class Settings extends GatewaySettings {
 		return $sections;
 	}
 
+	/**
+	 * Fields.
+	 *
+	 * @param array $fields Fields.
+	 *
+	 * @return array
+	 */
 	public function fields( array $fields ) {
-		// Storename
+		// Storename.
 		$fields[] = array(
 			'filter'   => FILTER_UNSAFE_RAW,
 			'section'  => 'ems_ecommerce',
@@ -49,7 +66,7 @@ class Settings extends GatewaySettings {
 			'classes'  => array( 'code' ),
 		);
 
-		// Shared secret
+		// Shared secret.
 		$fields[] = array(
 			'filter'   => FILTER_UNSAFE_RAW,
 			'section'  => 'ems_ecommerce',
@@ -59,7 +76,7 @@ class Settings extends GatewaySettings {
 			'classes'  => array( 'large-text', 'code' ),
 		);
 
-		// Transaction feedback
+		// Transaction feedback.
 		$fields[] = array(
 			'section' => 'ems_ecommerce',
 			'title'   => __( 'Transaction feedback', 'pronamic_ideal' ),
@@ -70,7 +87,7 @@ class Settings extends GatewaySettings {
 			),
 		);
 
-		// Purchase ID
+		// Purchase ID.
 		$fields[] = array(
 			'filter'      => array(
 				'filter' => FILTER_SANITIZE_STRING,
@@ -82,6 +99,7 @@ class Settings extends GatewaySettings {
 			'type'        => 'text',
 			'classes'     => array( 'regular-text', 'code' ),
 			'tooltip'     => sprintf(
+				/* translators: %s: <code>{orderId}</code> */
 				__( 'The EMS e-Commerce %s parameter.', 'pronamic_ideal' ),
 				sprintf( '<code>%s</code>', 'orderId' )
 			),
@@ -94,6 +112,7 @@ class Settings extends GatewaySettings {
 					'{payment_id}'
 				),
 				sprintf(
+					/* translators: %s: {order_id} */
 					__( 'Default: <code>%s</code>', 'pronamic_ideal' ),
 					'{order_id}'
 				)

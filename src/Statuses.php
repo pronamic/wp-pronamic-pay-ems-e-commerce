@@ -31,7 +31,7 @@ class Statuses {
 	 */
 	public static function transform( $status ) {
 		switch ( $status ) {
-			case self::OPEN :
+			case self::OPEN:
 				return Core_Statuses::OPEN;
 
 			default:
