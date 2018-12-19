@@ -7,9 +7,12 @@
 		<exclude name="Generic.Files.LowercasedFilename.NotFound" />
 
 		<exclude name="Squiz.Commenting" />
+
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 	</rule>
 
-	<rule ref="WordPress.VIP.SlowDBQuery.slow_db_query">
+	<rule ref="WordPress.DB.SlowDBQuery.slow_db_query_meta_key">
 		<exclude-pattern>src/Settings.php</exclude-pattern>
 	</rule>
 </ruleset>
