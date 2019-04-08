@@ -45,6 +45,16 @@ class Settings extends GatewaySettings {
 			'description' => __( 'Optional settings for advanced usage only.', 'pronamic_ideal' ),
 		);
 
+		// Transaction feedback.
+		$sections['ems_ecommerce_feedback'] = array(
+			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
+			'methods'     => array( 'ems_ecommerce' ),
+			'description' => __(
+				'Payment status updates will be processed without any additional configuration. The <em>Notification URL</em> is being used to receive the status updates.',
+				'pronamic_ideal'
+			),
+		);
+
 		return $sections;
 	}
 
@@ -79,12 +89,10 @@ class Settings extends GatewaySettings {
 		// Transaction feedback.
 		$fields[] = array(
 			'section' => 'ems_ecommerce',
+			'methods' => array( 'ems_ecommerce' ),
 			'title'   => __( 'Transaction feedback', 'pronamic_ideal' ),
 			'type'    => 'description',
-			'html'    => sprintf(
-				'<span class="dashicons dashicons-yes"></span> %s',
-				__( 'Payment status updates will be processed without any additional configuration.', 'pronamic_ideal' )
-			),
+			'html'    => __( 'Payment status updates will be processed without any additional configuration.', 'pronamic_ideal' ),
 		);
 
 		// Purchase ID.
@@ -117,6 +125,29 @@ class Settings extends GatewaySettings {
 					'{order_id}'
 				)
 			),
+		);
+
+		// Notification URL.
+		$fields[] = array(
+			'section'  => 'ems_ecommerce_feedback',
+			'title'    => __( 'Notification URL', 'pronamic_ideal' ),
+			'type'     => 'text',
+			'classes'  => array( 'large-text', 'code' ),
+			'value'    => home_url( '/' ),
+			'readonly' => true,
+			'tooltip'  => __(
+				'The Notification URL as sent with each transaction to receive automatic payment status updates on.',
+				'pronamic_ideal'
+			),
+		);
+
+		// Webhook status.
+		$fields[] = array(
+			'section'  => 'ems_ecommerce_feedback',
+			'methods'  => array( 'ems_ecommerce' ),
+			'title'    => __( 'Status', 'pronamic_ideal' ),
+			'type'     => 'description',
+			'callback' => array( 'Pronamic\WordPress\Pay\WebhookManager', 'settings_status' ),
 		);
 
 		return $fields;
