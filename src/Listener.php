@@ -3,6 +3,7 @@
 namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
 use Pronamic\WordPress\Pay\Plugin;
+use Pronamic\WordPress\Pay\WebhookManager;
 
 /**
  * Title: EMS e-Commerce listener
@@ -36,6 +37,9 @@ class Listener {
 		);
 
 		$payment->add_note( $note );
+
+		// Log webhook request.
+		WebhookManager::log_payment( $payment );
 
 		// Update payment.
 		Plugin::update_payment( $payment );
