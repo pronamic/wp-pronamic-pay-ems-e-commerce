@@ -24,6 +24,10 @@ class Integration extends AbstractIntegration {
 			__( 'live', 'pronamic_ideal' ) => 'https://www.ipg-online.com/vt/login',
 		);
 		$this->provider      = 'ems';
+		$this->supports      = array(
+			'webhook',
+			'webhook_no_config',
+		);
 
 		// Actions
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
