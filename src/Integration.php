@@ -37,22 +37,75 @@ class Integration extends AbstractIntegration {
 		return __NAMESPACE__ . '\ConfigFactory';
 	}
 
-	public function get_settings_class() {
-		return __NAMESPACE__ . '\Settings';
-	}
+	public function get_settings_fields() {
+		$fields = array();
 
-	/**
-	 * Get required settings for this integration.
-	 *
-	 * @link https://github.com/wp-premium/gravityforms/blob/1.9.16/includes/fields/class-gf-field-multiselect.php#L21-L42
-	 * @since 1.0.0
-	 * @return array
-	 */
-	public function get_settings() {
-		$settings = parent::get_settings();
+		// Storename.
+		$fields[] = array(
+			'section'  => 'general',
+			'filter'   => FILTER_UNSAFE_RAW,
+			'meta_key' => '_pronamic_gateway_ems_ecommerce_storename',
+			'title'    => _x( 'Storename', 'ems', 'pronamic_ideal' ),
+			'type'     => 'text',
+			'classes'  => array( 'code' ),
+		);
 
-		$settings[] = 'ems_ecommerce';
+		// Shared secret.
+		$fields[] = array(
+			'section'  => 'general',
+			'filter'   => FILTER_UNSAFE_RAW,
+			'meta_key' => '_pronamic_gateway_ems_ecommerce_secret',
+			'title'    => _x( 'Shared Secret', 'ems', 'pronamic_ideal' ),
+			'type'     => 'text',
+			'classes'  => array( 'large-text', 'code' ),
+		);
 
-		return $settings;
+		// Purchase ID.
+		$fields[] = array(
+			'section'  => 'advanced',
+			'filter'      => array(
+				'filter' => FILTER_SANITIZE_STRING,
+				'flags'  => FILTER_FLAG_NO_ENCODE_QUOTES,
+			),
+			'meta_key'    => '_pronamic_gateway_ems_ecommerce_order_id',
+			'title'       => __( 'Order ID', 'pronamic_ideal' ),
+			'type'        => 'text',
+			'classes'     => array( 'regular-text', 'code' ),
+			'tooltip'     => sprintf(
+				/* translators: %s: <code>{orderId}</code> */
+				__( 'The EMS e-Commerce %s parameter.', 'pronamic_ideal' ),
+				sprintf( '<code>%s</code>', 'orderId' )
+			),
+			'description' => sprintf(
+				'%s %s<br />%s',
+				__( 'Available tags:', 'pronamic_ideal' ),
+				sprintf(
+					'<code>%s</code> <code>%s</code>',
+					'{order_id}',
+					'{payment_id}'
+				),
+				sprintf(
+					/* translators: %s: {order_id} */
+					__( 'Default: <code>%s</code>', 'pronamic_ideal' ),
+					'{order_id}'
+				)
+			),
+		);
+
+		// Notification URL.
+		$fields[] = array(
+			'section'  => 'feedback',
+			'title'    => __( 'Notification URL', 'pronamic_ideal' ),
+			'type'     => 'text',
+			'classes'  => array( 'large-text', 'code' ),
+			'value'    => home_url( '/' ),
+			'readonly' => true,
+			'tooltip'  => __(
+				'The Notification URL as sent with each transaction to receive automatic payment status updates on.',
+				'pronamic_ideal'
+			),
+		);
+
+		return $fields;
 	}
 }
