@@ -37,10 +37,6 @@ class Integration extends AbstractIntegration {
 		}
 	}
 
-	public function get_config_factory_class() {
-		return __NAMESPACE__ . '\ConfigFactory';
-	}
-
 	public function get_settings_fields() {
 		$fields = array();
 
@@ -111,5 +107,16 @@ class Integration extends AbstractIntegration {
 		);
 
 		return $fields;
+	}
+
+	public function get_config( $post_id ) {
+		$config = new Config();
+
+		$config->storename = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_storename', true );
+		$config->secret    = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_secret', true );
+		$config->mode      = get_post_meta( $post_id, '_pronamic_gateway_mode', true );
+		$config->order_id  = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_order_id', true );
+
+		return $config;
 	}
 }
