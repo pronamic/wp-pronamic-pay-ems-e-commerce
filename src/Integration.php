@@ -26,6 +26,7 @@ class Integration extends AbstractIntegration {
 		$this->provider      = 'ems';
 		$this->supports      = array(
 			'webhook',
+			'webhook_log',
 			'webhook_no_config',
 		);
 
