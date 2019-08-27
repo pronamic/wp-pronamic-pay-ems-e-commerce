@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.0.2] - 2019-08-27
+- Updated packages.
+
 ## [2.0.1] - 2018-12-12
 - Fix using advanced order ID setting.
 
@@ -28,12 +31,13 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 ## [1.0.1] - 2016-10-20
 - Added transaction feedback status setting.
-- Fixed - Too many arguments for function "__".
+- Fixed - Too many arguments for function `__`.
 
 ## 1.0.0 - 2016-07-06
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.1...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.2...HEAD
+[2.0.2]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.4...2.0.0
 [1.0.4]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.3...1.0.4
