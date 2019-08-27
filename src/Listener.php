@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Plugin;
 /**
  * Title: EMS e-Commerce listener
  * Description:
- * Copyright: Copyright (c) 2005 - 2018
+ * Copyright: 2005-2019 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
@@ -24,6 +24,10 @@ class Listener {
 
 		$payment = get_pronamic_payment( $payment_id );
 
+		if ( null === $payment ) {
+			return;
+		}
+
 		// Add note.
 		$note = sprintf(
 			/* translators: %s: EMS */
@@ -32,6 +36,9 @@ class Listener {
 		);
 
 		$payment->add_note( $note );
+
+		// Log webhook request.
+		do_action( 'pronamic_pay_webhook_log_payment', $payment );
 
 		// Update payment.
 		Plugin::update_payment( $payment );

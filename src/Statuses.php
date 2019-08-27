@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Core\Statuses as Core_Statuses;
 /**
  * Title: EMS e-Commerce Gateway statuses constants
  * Description:
- * Copyright: Copyright (c) 2005 - 2018
+ * Copyright: 2005-2019 Pronamic
  * Company: Pronamic
  *
  * @author Remco Tolsma
@@ -31,7 +31,7 @@ class Statuses {
 	 */
 	public static function transform( $status ) {
 		switch ( $status ) {
-			case self::OPEN :
+			case self::OPEN:
 				return Core_Statuses::OPEN;
 
 			default:
