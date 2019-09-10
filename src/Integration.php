@@ -11,7 +11,7 @@ use Pronamic\WordPress\Pay\Gateways\Common\AbstractIntegration;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 2.0.0
+ * @version 2.0.3
  * @since 1.0.0
  */
 class Integration extends AbstractIntegration {
@@ -96,13 +96,16 @@ class Integration extends AbstractIntegration {
 		// Notification URL.
 		$fields[] = array(
 			'section'  => 'feedback',
-			'title'    => __( 'Notification URL', 'pronamic_ideal' ),
+			/* translators: Translate 'notification' the same as in the EMS e-Commerce dashboard. */
+			'title'    => _x( 'Notification URL', 'EMS e-Commerce', 'pronamic_ideal' ),
 			'type'     => 'text',
 			'classes'  => array( 'large-text', 'code' ),
 			'value'    => home_url( '/' ),
 			'readonly' => true,
-			'tooltip'  => __(
+			/* translators: Translate 'notification' the same as in the EMS e-Commerce dashboard. */
+			'tooltip'  => _x(
 				'The Notification URL as sent with each transaction to receive automatic payment status updates on.',
+				'EMS e-Commerce',
 				'pronamic_ideal'
 			),
 		);

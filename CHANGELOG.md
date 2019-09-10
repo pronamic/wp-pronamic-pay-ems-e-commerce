@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.0.3] - 2019-09-10
+- Added context to the 'notification' translatable strings.
+
 ## [2.0.2] - 2019-08-27
 - Updated packages.
 
@@ -36,7 +39,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2016-07-06
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.2...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.3...HEAD
+[2.0.3]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/1.0.4...2.0.0
