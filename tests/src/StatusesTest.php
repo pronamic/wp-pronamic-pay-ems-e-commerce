@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
-use Pronamic\WordPress\Pay\Core\Statuses as Core_Statuses;
+use Pronamic\WordPress\Pay\Payments\PaymentStatus as Core_Statuses;
 
 /**
  * Title: EMS e-Commerce Gateway statuses constants tests

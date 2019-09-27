@@ -4,7 +4,7 @@ namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
 use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
 use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
-use Pronamic\WordPress\Pay\Core\Statuses;
+use Pronamic\WordPress\Pay\Payments\PaymentStatus;
 use Pronamic\WordPress\Pay\Payments\Payment;
 
 /**
@@ -147,22 +147,22 @@ class Gateway extends Core_Gateway {
 
 			switch ( $response_code ) {
 				case 'Y':
-					$status = Statuses::SUCCESS;
+					$status = PaymentStatus::SUCCESS;
 
 					break;
 				case 'N':
-					$status = Statuses::FAILURE;
+					$status = PaymentStatus::FAILURE;
 
 					$fail_code = filter_input( INPUT_POST, 'fail_rc', FILTER_SANITIZE_NUMBER_INT );
 
 					if ( '5993' === $fail_code ) {
-						$status = Statuses::CANCELLED;
+						$status = PaymentStatus::CANCELLED;
 					}
 
 					break;
 
 				default:
-					$status = Statuses::OPEN;
+					$status = PaymentStatus::OPEN;
 
 					break;
 			}
