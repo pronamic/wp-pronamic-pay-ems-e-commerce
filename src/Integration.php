@@ -19,7 +19,6 @@ class Integration extends AbstractIntegration {
 		$this->id            = 'ems-ecommerce';
 		$this->name          = 'EMS e-Commerce';
 		$this->product_url   = '';
-		$this->manual_url    = __( 'https://www.pronamic.eu/support/how-to-connect-ems-with-wordpress-via-pronamic-pay/', 'pronamic_ideal' );
 		$this->dashboard_url = array(
 			__( 'test', 'pronamic_ideal' ) => 'https://test.ipg-online.com/vt/login',
 			__( 'live', 'pronamic_ideal' ) => 'https://www.ipg-online.com/vt/login',
@@ -30,6 +29,8 @@ class Integration extends AbstractIntegration {
 			'webhook_log',
 			'webhook_no_config',
 		);
+
+		$this->set_manual_url( __( 'https://www.pronamic.eu/support/how-to-connect-ems-with-wordpress-via-pronamic-pay/', 'pronamic_ideal' ) );
 
 		// Actions
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
