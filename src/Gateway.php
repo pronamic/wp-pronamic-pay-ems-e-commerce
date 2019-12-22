@@ -4,7 +4,7 @@ namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
 use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
 use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
-use Pronamic\WordPress\Pay\Core\Statuses;
+use Pronamic\WordPress\Pay\Payments\PaymentStatus;
 use Pronamic\WordPress\Pay\Payments\Payment;
 
 /**
@@ -14,7 +14,7 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 2.0.1
+ * @version 2.0.4
  * @since 1.0.0
  */
 class Gateway extends Core_Gateway {
@@ -72,13 +72,26 @@ class Gateway extends Core_Gateway {
 	 */
 	public function start( Payment $payment ) {
 		$payment->set_action_url( $this->client->get_action_url() );
+	}
 
+	/**
+	 * Get the output HTML
+	 *
+	 * @param Payment $payment Payment.
+	 *
+	 * @return array
+	 *
+	 * @see     Core_Gateway::get_output_html()
+	 * @since   1.0.0
+	 * @version 2.0.4
+	 */
+	public function get_output_fields( Payment $payment ) {
 		$this->client->set_payment_id( $payment->get_id() );
 		$this->client->set_currency_numeric_code( $payment->get_total_amount()->get_currency()->get_numeric_code() );
 		$this->client->set_order_id( $payment->format_string( $this->config->order_id ) );
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
-		$this->client->set_amount( $payment->get_total_amount()->get_cents() );
+		$this->client->set_amount( $payment->get_total_amount()->get_minor_units() );
 		$this->client->set_issuer_id( $payment->get_issuer() );
 
 		// Language.
@@ -95,15 +108,7 @@ class Gateway extends Core_Gateway {
 		}
 
 		$this->client->set_payment_method( $payment_method );
-	}
 
-	/**
-	 * Get the output HTML
-	 *
-	 * @since 1.0.0
-	 * @see Pronamic_WP_Pay_Gateway::get_output_html()
-	 */
-	public function get_output_fields() {
 		return $this->client->get_fields();
 	}
 
@@ -147,22 +152,22 @@ class Gateway extends Core_Gateway {
 
 			switch ( $response_code ) {
 				case 'Y':
-					$status = Statuses::SUCCESS;
+					$status = PaymentStatus::SUCCESS;
 
 					break;
 				case 'N':
-					$status = Statuses::FAILURE;
+					$status = PaymentStatus::FAILURE;
 
 					$fail_code = filter_input( INPUT_POST, 'fail_rc', FILTER_SANITIZE_NUMBER_INT );
 
 					if ( '5993' === $fail_code ) {
-						$status = Statuses::CANCELLED;
+						$status = PaymentStatus::CANCELLED;
 					}
 
 					break;
 
 				default:
-					$status = Statuses::OPEN;
+					$status = PaymentStatus::OPEN;
 
 					break;
 			}
