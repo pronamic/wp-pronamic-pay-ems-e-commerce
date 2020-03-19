@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.0] - 2020-03-19
+- Extend from AbstractGatewayIntegration class.
+
 ## [2.0.4] - 2019-12-22
 - Added URL to manual in gateway settings.
 - Updated output fields to use payment.
@@ -44,7 +47,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2016-07-06
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.4...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.4...2.1.0
 [2.0.4]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.1...2.0.2
