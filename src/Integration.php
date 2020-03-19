@@ -2,35 +2,46 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
-use Pronamic\WordPress\Pay\Gateways\Common\AbstractIntegration;
+use Pronamic\WordPress\Pay\AbstractGatewayIntegration;
 
 /**
  * Title: EMS e-Commerce integration
  * Description:
- * Copyright: 2005-2019 Pronamic
+ * Copyright: 2005-2020 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
  * @version 2.0.4
  * @since 1.0.0
  */
-class Integration extends AbstractIntegration {
-	public function __construct() {
-		$this->id            = 'ems-ecommerce';
-		$this->name          = 'EMS e-Commerce';
-		$this->product_url   = '';
-		$this->dashboard_url = array(
-			__( 'test', 'pronamic_ideal' ) => 'https://test.ipg-online.com/vt/login',
-			__( 'live', 'pronamic_ideal' ) => 'https://www.ipg-online.com/vt/login',
-		);
-		$this->provider      = 'ems';
-		$this->supports      = array(
-			'webhook',
-			'webhook_log',
-			'webhook_no_config',
+class Integration extends AbstractGatewayIntegration {
+	/**
+	 * Construct EMS e-Commerce integration.
+	 *
+	 * @param array $args Arguments.
+	 */
+	public function __construct( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'id'            => 'ems-ecommerce',
+				'name'          => 'EMS e-Commerce',
+				'provider'      => 'ems',
+				'product_url'   => null,
+				'dashboard_url' => array(
+					\__( 'test', 'pronamic_ideal' ) => 'https://test.ipg-online.com/vt/login',
+					\__( 'live', 'pronamic_ideal' ) => 'https://www.ipg-online.com/vt/login',
+				),
+				'supports'      => array(
+					'webhook',
+					'webhook_log',
+					'webhook_no_config',
+				),
+				'manual_url'    => \__( 'https://www.pronamic.eu/support/how-to-connect-ems-with-wordpress-via-pronamic-pay/', 'pronamic_ideal' ),
+			)
 		);
 
-		$this->set_manual_url( __( 'https://www.pronamic.eu/support/how-to-connect-ems-with-wordpress-via-pronamic-pay/', 'pronamic_ideal' ) );
+		parent::__construct( $args );
 
 		// Actions
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );

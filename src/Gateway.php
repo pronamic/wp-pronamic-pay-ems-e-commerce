@@ -10,7 +10,7 @@ use Pronamic\WordPress\Pay\Payments\Payment;
 /**
  * Title: EMS e-Commerce
  * Description:
- * Copyright: 2005-2019 Pronamic
+ * Copyright: 2005-2020 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
