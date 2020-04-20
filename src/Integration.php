@@ -11,7 +11,7 @@ use Pronamic\WordPress\Pay\AbstractGatewayIntegration;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 2.0.4
+ * @version 2.1.1
  * @since 1.0.0
  */
 class Integration extends AbstractGatewayIntegration {
@@ -99,9 +99,9 @@ class Integration extends AbstractGatewayIntegration {
 					'{payment_id}'
 				),
 				sprintf(
-					/* translators: %s: {order_id} */
+					/* translators: %s: {payment_id} */
 					__( 'Default: <code>%s</code>', 'pronamic_ideal' ),
-					'{order_id}'
+					'{payment_id}'
 				)
 			),
 		);
