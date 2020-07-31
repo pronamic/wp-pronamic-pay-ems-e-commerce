@@ -99,7 +99,7 @@ class Integration extends AbstractGatewayIntegration {
 					'{payment_id}'
 				),
 				sprintf(
-					/* translators: %s: {payment_id} */
+					/* translators: %s: default code */
 					__( 'Default: <code>%s</code>', 'pronamic_ideal' ),
 					'{payment_id}'
 				)

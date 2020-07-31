@@ -30,7 +30,7 @@ class Listener {
 
 		// Add note.
 		$note = sprintf(
-			/* translators: %s: EMS */
+			/* translators: %s: payment provider name */
 			__( 'Webhook requested by %s.', 'pronamic_ideal' ),
 			__( 'EMS', 'pronamic_ideal' )
 		);
