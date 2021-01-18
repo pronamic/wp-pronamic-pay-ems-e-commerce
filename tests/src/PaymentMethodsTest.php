@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
 /**
  * Title: EMS e-Commerce Gateway payment methods tests
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author Remco Tolsma

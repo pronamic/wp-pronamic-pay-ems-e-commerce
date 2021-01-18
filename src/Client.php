@@ -8,7 +8,7 @@ use Pronamic\WordPress\DateTime\DateTimeZone;
 /**
  * Title: EMS e-Commerce client
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
