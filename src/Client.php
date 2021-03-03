@@ -137,7 +137,7 @@ class Client {
 	private $transaction_datetime;
 
 	/**
-	 * Constructs and initalize an EMS e-Commerce object
+	 * Construct and initialize an EMS e-Commerce object
 	 */
 	public function __construct() {
 	}
