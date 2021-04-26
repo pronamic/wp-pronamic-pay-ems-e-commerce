@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.2] - 2021-04-26
+- Happy 2021.
+
 ## [2.1.1] - 2020-04-20
 - Fixed incorrect default tag in description of Order ID settings field.
 
@@ -50,7 +53,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2016-07-06
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.1.1...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.1.2...HEAD
+[2.1.2]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.1.1...2.1.2
 [2.1.1]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.4...2.1.0
 [2.0.4]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.0.3...2.0.4
