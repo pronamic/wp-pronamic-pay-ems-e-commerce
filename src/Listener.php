@@ -15,6 +15,11 @@ use Pronamic\WordPress\Pay\Plugin;
  * @since 1.0.0
  */
 class Listener {
+	/**
+	 * Listen.
+	 *
+	 * @return void
+	 */
 	public static function listen() {
 		if ( ! filter_has_var( INPUT_POST, 'ems_notify_payment_id' ) ) {
 			return;
@@ -35,7 +40,11 @@ class Listener {
 			__( 'EMS', 'pronamic_ideal' )
 		);
 
-		$payment->add_note( $note );
+		try {
+			$payment->add_note( $note );
+		} catch ( \Exception $e ) {
+			// Nothing to do.
+		}
 
 		// Log webhook request.
 		do_action( 'pronamic_pay_webhook_log_payment', $payment );
