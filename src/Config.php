@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Core\GatewayConfig;
 /**
  * Title: EMS e-Commerce config
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
@@ -15,9 +15,24 @@ use Pronamic\WordPress\Pay\Core\GatewayConfig;
  * @since 1.0.0
  */
 class Config extends GatewayConfig {
+	/**
+	 * Store name.
+	 *
+	 * @var string|null
+	 */
 	public $storename;
 
+	/**
+	 * Secret.
+	 *
+	 * @var string|null
+	 */
 	public $secret;
 
+	/**
+	 * Order ID.
+	 *
+	 * @var string|null
+	 */
 	public $order_id;
 }

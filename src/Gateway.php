@@ -10,7 +10,7 @@ use Pronamic\WordPress\Pay\Payments\Payment;
 /**
  * Title: EMS e-Commerce
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
@@ -29,6 +29,7 @@ class Gateway extends Core_Gateway {
 	 * Constructs and initializes an EMS e-Commerce gateway
 	 *
 	 * @param Config $config Config.
+	 * @return void
 	 */
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
@@ -52,7 +53,9 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Get supported payment methods.
 	 *
-	 * @see Pronamic_WP_Pay_Gateway::get_supported_payment_methods()
+	 * @return array<string>
+	 *
+	 * @see Core_Gateway::get_supported_payment_methods()
 	 */
 	public function get_supported_payment_methods() {
 		return array(
@@ -66,9 +69,10 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Start
 	 *
-	 * @see Pronamic_WP_Pay_Gateway::start()
-	 *
 	 * @param Payment $payment Payment.
+	 * @return void
+	 *
+	 * @see Core_Gateway::start()
 	 */
 	public function start( Payment $payment ) {
 		$payment->set_action_url( $this->client->get_action_url() );
@@ -78,7 +82,6 @@ class Gateway extends Core_Gateway {
 	 * Get the output HTML
 	 *
 	 * @param Payment $payment Payment.
-	 *
 	 * @return array
 	 *
 	 * @see     Core_Gateway::get_output_html()
@@ -86,8 +89,8 @@ class Gateway extends Core_Gateway {
 	 * @version 2.0.4
 	 */
 	public function get_output_fields( Payment $payment ) {
-		$this->client->set_payment_id( $payment->get_id() );
-		$this->client->set_currency_numeric_code( $payment->get_total_amount()->get_currency()->get_numeric_code() );
+		$this->client->set_payment_id( (int) $payment->get_id() );
+		$this->client->set_currency_numeric_code( (string) $payment->get_total_amount()->get_currency()->get_numeric_code() );
 		$this->client->set_order_id( $payment->format_string( $this->config->order_id ) );
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
@@ -116,6 +119,7 @@ class Gateway extends Core_Gateway {
 	 * Update status of the specified payment
 	 *
 	 * @param Payment $payment Payment.
+	 * @return void
 	 */
 	public function update_status( Payment $payment ) {
 		$approval_code = filter_input( INPUT_POST, 'approval_code', FILTER_SANITIZE_STRING );

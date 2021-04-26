@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
 /**
  * Title: EMS e-Commerce payment methods
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
@@ -76,9 +76,9 @@ class PaymentMethods {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $payment_method Payment method.
+	 * @param string|null $payment_method Payment method.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public static function transform( $payment_method ) {
 		switch ( $payment_method ) {

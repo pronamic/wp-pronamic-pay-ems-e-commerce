@@ -8,7 +8,7 @@ use Pronamic\WordPress\DateTime\DateTimeZone;
 /**
  * Title: EMS e-Commerce client
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
@@ -132,12 +132,12 @@ class Client {
 	/**
 	 * Transaction datetime.
 	 *
-	 * @var string
+	 * @var DateTime
 	 */
 	private $transaction_datetime;
 
 	/**
-	 * Constructs and initalize an EMS e-Commerce object
+	 * Construct and initialize an EMS e-Commerce object
 	 */
 	public function __construct() {
 	}
@@ -155,6 +155,7 @@ class Client {
 	 * Set the action URL
 	 *
 	 * @param string $url Action URL.
+	 * @return void
 	 */
 	public function set_action_url( $url ) {
 		$this->action_url = $url;
@@ -173,6 +174,7 @@ class Client {
 	 * Set the currency code
 	 *
 	 * @param string $code Currency numeric code.
+	 * @return void
 	 */
 	public function set_currency_numeric_code( $code ) {
 		$this->currency_numeric_code = $code;
@@ -191,6 +193,7 @@ class Client {
 	 * Set the storename
 	 *
 	 * @param string $storename Storename.
+	 * @return void
 	 */
 	public function set_storename( $storename ) {
 		$this->storename = $storename;
@@ -211,6 +214,7 @@ class Client {
 	 * LET OP! De URL mag geen parameters bevatten.
 	 *
 	 * @param string $return_url Return URL.
+	 * @return void
 	 */
 	public function set_return_url( $return_url ) {
 		$this->return_url = $return_url;
@@ -229,6 +233,7 @@ class Client {
 	 * Set amount
 	 *
 	 * @param float $amount Amount.
+	 * @return void
 	 */
 	public function set_amount( $amount ) {
 		$this->amount = $amount;
@@ -247,6 +252,7 @@ class Client {
 	 * Set notification URL
 	 *
 	 * @param string $notification_url Notification URL.
+	 * @return void
 	 */
 	public function set_notification_url( $notification_url ) {
 		$this->notification_url = $notification_url;
@@ -265,6 +271,7 @@ class Client {
 	 * Set language.
 	 *
 	 * @param string $language Language.
+	 * @return void
 	 */
 	public function set_language( $language ) {
 		$this->language = $language;
@@ -274,6 +281,7 @@ class Client {
 	 * Set the payment method.
 	 *
 	 * @param string $payment_method Payment method.
+	 * @return void
 	 */
 	public function set_payment_method( $payment_method ) {
 		$this->payment_method = $payment_method;
@@ -301,6 +309,7 @@ class Client {
 	 * Set order ID
 	 *
 	 * @param string $order_id Order ID.
+	 * @return void
 	 */
 	public function set_order_id( $order_id ) {
 		$this->order_id = $order_id;
@@ -319,6 +328,7 @@ class Client {
 	 * Set payment ID
 	 *
 	 * @param int $payment_id Payment ID.
+	 * @return void
 	 */
 	public function set_payment_id( $payment_id ) {
 		$this->payment_id = $payment_id;
@@ -328,7 +338,6 @@ class Client {
 	 * Get the transaction datetime.
 	 *
 	 * @param boolean $create_new Indicator for creating a new expire date.
-	 *
 	 * @return DateTime
 	 */
 	public function get_transaction_datetime( $create_new = false ) {
@@ -343,6 +352,7 @@ class Client {
 	 * Set transaction datetime.
 	 *
 	 * @param DateTime $datetime Transaction date time.
+	 * @return void
 	 */
 	public function set_transaction_datetime( DateTime $datetime ) {
 		$this->transaction_datetime = $datetime;
@@ -402,7 +412,6 @@ class Client {
 	 * Set shared secret.
 	 *
 	 * @param string $secret Secret.
-	 *
 	 * @return void
 	 */
 	public function set_secret( $secret ) {
@@ -433,7 +442,6 @@ class Client {
 	 * Compute hash
 	 *
 	 * @param array $values Values to compute hash for.
-	 *
 	 * @return string
 	 */
 	public static function compute_hash( $values ) {
@@ -461,6 +469,7 @@ class Client {
 	 * Set issuer ID.
 	 *
 	 * @param string $issuer_id Issuer ID.
+	 * @return void
 	 */
 	public function set_issuer_id( $issuer_id ) {
 		$this->issuer_id = $issuer_id;
