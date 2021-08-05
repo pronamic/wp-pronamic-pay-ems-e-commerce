@@ -10,7 +10,6 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [3.0.0] - 2021-08-05
 - Updated to `pronamic/wp-pay-core`  version `3.0.0`.
 - Updated to `pronamic/wp-money`  version `2.0.0`.
-- Changed `TaxedMoney` to `Money`, no tax info.
 - Switched to `pronamic/wp-coding-standards`.
 
 ## [2.1.2] - 2021-04-26
