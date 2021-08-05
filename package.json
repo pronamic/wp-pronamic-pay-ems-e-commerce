@@ -1,6 +1,6 @@
 {
   "name": "ems-e-commerce",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "EMS e-Commerce Gateway driver for the WordPress payment processing library.",
   "repository": {
     "type": "git",
