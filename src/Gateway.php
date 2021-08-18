@@ -14,7 +14,7 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 2.0.4
+ * @version 3.0.1
  * @since 1.0.0
  */
 class Gateway extends Core_Gateway {
@@ -94,7 +94,7 @@ class Gateway extends Core_Gateway {
 		$this->client->set_order_id( $payment->format_string( $this->config->order_id ) );
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
-		$this->client->set_amount( $payment->get_total_amount()->get_minor_units() );
+		$this->client->set_amount( $payment->get_total_amount() );
 		$this->client->set_issuer_id( $payment->get_issuer() );
 
 		// Language.

@@ -4,6 +4,7 @@ namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
 use Pronamic\WordPress\DateTime\DateTime;
 use Pronamic\WordPress\DateTime\DateTimeZone;
+use Pronamic\WordPress\Money\Money;
 
 /**
  * Title: EMS e-Commerce client
@@ -12,7 +13,7 @@ use Pronamic\WordPress\DateTime\DateTimeZone;
  * Company: Pronamic
  *
  * @author Reüel van der Steege
- * @version 2.0.0
+ * @version 3.0.1
  * @since 1.0.0
  */
 class Client {
@@ -73,9 +74,9 @@ class Client {
 	private $return_url;
 
 	/**
-	 * Amount
+	 * Amount.
 	 *
-	 * @var string N12
+	 * @var Money
 	 */
 	private $amount;
 
@@ -223,7 +224,7 @@ class Client {
 	/**
 	 * Get amount
 	 *
-	 * @return float
+	 * @return Money
 	 */
 	public function get_amount() {
 		return $this->amount;
@@ -232,7 +233,7 @@ class Client {
 	/**
 	 * Set amount
 	 *
-	 * @param float $amount Amount.
+	 * @param Money $amount Amount.
 	 * @return void
 	 */
 	public function set_amount( $amount ) {
@@ -374,7 +375,15 @@ class Client {
 			'hash_algorithm' => 'SHA256',
 			'storename'      => $this->get_storename(),
 			'mode'           => 'payonly',
-			'chargetotal'    => number_format( ( $this->get_amount() / 100 ), 2, '.', '' ),
+			/**
+			 * This is the total amount of the transaction using a dot or comma
+			 * as decimal separator, e. g. 12.34 for an amount of 12 Euro and
+			 * 34 Cent. Group separators like1,000.01 / 1.000,01 are not
+			 * allowed.
+			 * 
+			 * @link https://github.com/wp-pay-gateways/ems-e-commerce/blob/5bb23be651fa54ce39244946525416796a5c3342/documentation/EMS-Manual-e-Comm-Gateway-HPP-tech-2017-6.pdf
+			 */
+			'chargetotal'    => $this->amount->number_format( null, '.', '' ),
 			'currency'       => $this->get_currency_numeric_code(),
 		);
 
