@@ -95,7 +95,7 @@ class Gateway extends Core_Gateway {
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
 		$this->client->set_amount( $payment->get_total_amount() );
-		$this->client->set_issuer_id( $payment->get_issuer() );
+		$this->client->set_issuer_id( $payment->get_meta( 'issuer' ) );
 
 		// Language.
 		if ( null !== $payment->get_customer() ) {
