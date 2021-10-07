@@ -103,11 +103,11 @@ class Gateway extends Core_Gateway {
 		}
 
 		// Payment method.
-		$payment_method = PaymentMethods::transform( $payment->get_method() );
+		$payment_method = PaymentMethods::transform( $payment->get_payment_method() );
 
-		if ( null === $payment_method && '' !== $payment->get_method() ) {
+		if ( null === $payment_method && '' !== $payment->get_payment_method() ) {
 			// Leap of faith if the WordPress payment method could not transform to a EMS method?
-			$payment_method = $payment->get_method();
+			$payment_method = $payment->get_payment_method();
 		}
 
 		$this->client->set_payment_method( $payment_method );
