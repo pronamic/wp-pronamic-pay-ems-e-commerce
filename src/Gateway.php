@@ -98,8 +98,14 @@ class Gateway extends Core_Gateway {
 		$this->client->set_issuer_id( $payment->get_meta( 'issuer' ) );
 
 		// Language.
-		if ( null !== $payment->get_customer() ) {
-			$this->client->set_language( $payment->get_customer()->get_locale() );
+		$customer = $payment->get_customer();
+
+		if ( null !== $customer ) {
+			$locale = $customer->get_locale();
+
+			if ( null !== $locale ) {
+				$this->client->set_language( $locale );
+			}
 		}
 
 		// Payment method.
