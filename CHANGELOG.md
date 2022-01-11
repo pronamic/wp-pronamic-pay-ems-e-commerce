@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.0.0] - 2022-01-11
+### Changed
+- Updated to https://github.com/pronamic/wp-pay-core/releases/tag/4.0.0.
+
 ## [3.0.1] - 2021-08-18
 - Fixed `chargetotal` number format.
 
@@ -61,7 +65,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2016-07-06
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/3.0.1...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/3.0.1...4.0.0
 [3.0.1]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.1.2...3.0.0
 [2.1.2]: https://github.com/wp-pay-gateways/ems-e-commerce/compare/2.1.1...2.1.2
