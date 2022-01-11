@@ -9,7 +9,7 @@ use Pronamic\WordPress\Money\Money;
 /**
  * Title: EMS e-Commerce client
  * Description:
- * Copyright: 2005-2021 Pronamic
+ * Copyright: 2005-2022 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege

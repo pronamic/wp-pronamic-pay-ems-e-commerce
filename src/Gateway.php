@@ -10,7 +10,7 @@ use Pronamic\WordPress\Pay\Payments\Payment;
 /**
  * Title: EMS e-Commerce
  * Description:
- * Copyright: 2005-2021 Pronamic
+ * Copyright: 2005-2022 Pronamic
  * Company: Pronamic
  *
  * @author Reüel van der Steege
@@ -95,19 +95,25 @@ class Gateway extends Core_Gateway {
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
 		$this->client->set_amount( $payment->get_total_amount() );
-		$this->client->set_issuer_id( $payment->get_issuer() );
+		$this->client->set_issuer_id( $payment->get_meta( 'issuer' ) );
 
 		// Language.
-		if ( null !== $payment->get_customer() ) {
-			$this->client->set_language( $payment->get_customer()->get_locale() );
+		$customer = $payment->get_customer();
+
+		if ( null !== $customer ) {
+			$locale = $customer->get_locale();
+
+			if ( null !== $locale ) {
+				$this->client->set_language( $locale );
+			}
 		}
 
 		// Payment method.
-		$payment_method = PaymentMethods::transform( $payment->get_method() );
+		$payment_method = PaymentMethods::transform( $payment->get_payment_method() );
 
-		if ( null === $payment_method && '' !== $payment->get_method() ) {
+		if ( null === $payment_method && '' !== $payment->get_payment_method() ) {
 			// Leap of faith if the WordPress payment method could not transform to a EMS method?
-			$payment_method = $payment->get_method();
+			$payment_method = $payment->get_payment_method();
 		}
 
 		$this->client->set_payment_method( $payment_method );
