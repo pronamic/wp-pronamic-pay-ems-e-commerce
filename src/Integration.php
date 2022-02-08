@@ -18,7 +18,7 @@ class Integration extends AbstractGatewayIntegration {
 	/**
 	 * Construct EMS e-Commerce integration.
 	 *
-	 * @param array $args Arguments.
+	 * @param array<string, mixed> $args Arguments.
 	 */
 	public function __construct( $args = array() ) {
 		$args = wp_parse_args(

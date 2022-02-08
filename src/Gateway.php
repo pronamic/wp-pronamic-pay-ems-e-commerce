@@ -26,6 +26,13 @@ class Gateway extends Core_Gateway {
 	protected $client;
 
 	/**
+	 * Config.
+	 *
+	 * @var Config
+	 */
+	protected $config;
+
+	/**
 	 * Constructs and initializes an EMS e-Commerce gateway
 	 *
 	 * @param Config $config Config.
@@ -46,8 +53,8 @@ class Gateway extends Core_Gateway {
 		}
 
 		$this->client->set_action_url( $action_url );
-		$this->client->set_storename( $config->storename );
-		$this->client->set_secret( $config->secret );
+		$this->client->set_storename( (string) $config->storename );
+		$this->client->set_secret( (string) $config->secret );
 	}
 
 	/**
@@ -82,16 +89,16 @@ class Gateway extends Core_Gateway {
 	 * Get the output HTML
 	 *
 	 * @param Payment $payment Payment.
-	 * @return array
+	 * @return array<string, string>
 	 *
 	 * @see     Core_Gateway::get_output_html()
 	 * @since   1.0.0
 	 * @version 2.0.4
 	 */
 	public function get_output_fields( Payment $payment ) {
-		$this->client->set_payment_id( (int) $payment->get_id() );
+		$this->client->set_payment_id( (string) $payment->get_id() );
 		$this->client->set_currency_numeric_code( (string) $payment->get_total_amount()->get_currency()->get_numeric_code() );
-		$this->client->set_order_id( $payment->format_string( $this->config->order_id ) );
+		$this->client->set_order_id( $payment->format_string( (string) $this->config->order_id ) );
 		$this->client->set_return_url( home_url( '/' ) );
 		$this->client->set_notification_url( home_url( '/' ) );
 		$this->client->set_amount( $payment->get_total_amount() );
@@ -116,7 +123,9 @@ class Gateway extends Core_Gateway {
 			$payment_method = $payment->get_payment_method();
 		}
 
-		$this->client->set_payment_method( $payment_method );
+		if ( null !== $payment_method ) {
+			$this->client->set_payment_method( $payment_method );
+		}
 
 		return $this->client->get_fields();
 	}

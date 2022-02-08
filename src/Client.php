@@ -98,7 +98,7 @@ class Client {
 	/**
 	 * Payment method
 	 *
-	 * @var array
+	 * @var string
 	 */
 	private $payment_method;
 
@@ -319,7 +319,7 @@ class Client {
 	/**
 	 * Get payment ID
 	 *
-	 * @return int
+	 * @return string
 	 */
 	public function get_payment_id() {
 		return $this->payment_id;
@@ -328,7 +328,7 @@ class Client {
 	/**
 	 * Set payment ID
 	 *
-	 * @param int $payment_id Payment ID.
+	 * @param string $payment_id Payment ID.
 	 * @return void
 	 */
 	public function set_payment_id( $payment_id ) {
@@ -343,7 +343,7 @@ class Client {
 	 */
 	public function get_transaction_datetime( $create_new = false ) {
 		if ( null === $this->transaction_datetime || $create_new ) {
-			$this->transaction_datetime = new DateTime( null, new DateTimeZone( 'UTC' ) );
+			$this->transaction_datetime = new DateTime( 'now', new DateTimeZone( 'UTC' ) );
 		}
 
 		return $this->transaction_datetime;
@@ -362,7 +362,7 @@ class Client {
 	/**
 	 * Get data
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public function get_data() {
 		// Required fields for payment request.
@@ -396,7 +396,7 @@ class Client {
 			'responseSuccessURL'         => $this->get_return_url(),
 			'transactionNotificationURL' => $this->get_notification_url(),
 			'idealIssuerID'              => $this->get_issuer_id(),
-			'ems_notify_payment_id'      => $this->get_payment_id(),
+			'ems_notify_payment_id'      => (string) $this->get_payment_id(),
 		);
 
 		// @link http://briancray.com/2009/04/25/remove-null-values-php-arrays/
@@ -450,7 +450,7 @@ class Client {
 	/**
 	 * Compute hash
 	 *
-	 * @param array $values Values to compute hash for.
+	 * @param string[] $values Values to compute hash for.
 	 * @return string
 	 */
 	public static function compute_hash( $values ) {
@@ -464,7 +464,7 @@ class Client {
 	 * Get fields
 	 *
 	 * @since 1.0.0
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public function get_fields() {
 		$fields = $this->get_data();
