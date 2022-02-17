@@ -37,7 +37,6 @@ class Integration extends AbstractGatewayIntegration {
 				'provider'      => 'ems',
 				'product_url'   => null,
 				'dashboard_url' => 'https://www.ipg-online.com/vt/login',
-				),
 				'supports'      => array(
 					'webhook',
 					'webhook_log',

@@ -65,7 +65,7 @@ class Config extends GatewayConfig {
 	 * @param string $action_url Action URL.
 	 * @return void
 	 */
-	public function get_action_url( $action_url ) {
+	public function set_action_url( $action_url ) {
 		$this->action_url = $action_url;
 	}
 }
