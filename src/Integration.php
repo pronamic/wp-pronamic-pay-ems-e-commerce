@@ -16,6 +16,13 @@ use Pronamic\WordPress\Pay\AbstractGatewayIntegration;
  */
 class Integration extends AbstractGatewayIntegration {
 	/**
+	 * Action URL.
+	 * 
+	 * @var string
+	 */
+	private $action_url;
+
+	/**
 	 * Construct EMS e-Commerce integration.
 	 *
 	 * @param array<string, mixed> $args Arguments.
@@ -26,11 +33,10 @@ class Integration extends AbstractGatewayIntegration {
 			array(
 				'id'            => 'ems-ecommerce',
 				'name'          => 'EMS e-Commerce',
+				'action_url'    => Client::ACTION_URL_PRODUCTION,
 				'provider'      => 'ems',
 				'product_url'   => null,
-				'dashboard_url' => array(
-					\__( 'test', 'pronamic_ideal' ) => 'https://test.ipg-online.com/vt/login',
-					\__( 'live', 'pronamic_ideal' ) => 'https://www.ipg-online.com/vt/login',
+				'dashboard_url' => 'https://www.ipg-online.com/vt/login',
 				),
 				'supports'      => array(
 					'webhook',
@@ -42,6 +48,8 @@ class Integration extends AbstractGatewayIntegration {
 		);
 
 		parent::__construct( $args );
+
+		$this->action_url = $args['action_url'];
 
 		// Actions
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
@@ -140,9 +148,10 @@ class Integration extends AbstractGatewayIntegration {
 	public function get_config( $post_id ) {
 		$config = new Config();
 
+		$config->set_action_url( $this->action_url );
+
 		$config->storename = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_storename', true );
 		$config->secret    = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_secret', true );
-		$config->mode      = get_post_meta( $post_id, '_pronamic_gateway_mode', true );
 		$config->order_id  = get_post_meta( $post_id, '_pronamic_gateway_ems_ecommerce_order_id', true );
 
 		return $config;

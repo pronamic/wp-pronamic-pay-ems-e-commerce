@@ -46,15 +46,9 @@ class Gateway extends Core_Gateway {
 		// Client.
 		$this->client = new Client();
 
-		$action_url = Client::ACTION_URL_PRODUCTION;
-
-		if ( self::MODE_TEST === $config->mode ) {
-			$action_url = Client::ACTION_URL_TEST;
-		}
-
-		$this->client->set_action_url( $action_url );
-		$this->client->set_storename( (string) $config->storename );
-		$this->client->set_secret( (string) $config->secret );
+		$this->client->set_action_url( $config->get_action_url() );
+		$this->client->set_storename( $config->storename );
+		$this->client->set_secret( $config->secret );
 	}
 
 	/**

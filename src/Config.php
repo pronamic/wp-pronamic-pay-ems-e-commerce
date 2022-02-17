@@ -16,6 +16,13 @@ use Pronamic\WordPress\Pay\Core\GatewayConfig;
  */
 class Config extends GatewayConfig {
 	/**
+	 * Action URL.
+	 * 
+	 * @var string
+	 */
+	private $action_url;
+
+	/**
 	 * Store name.
 	 *
 	 * @var string|null
@@ -35,4 +42,30 @@ class Config extends GatewayConfig {
 	 * @var string|null
 	 */
 	public $order_id;
+
+	/**
+	 * Construct config.
+	 */
+	public function __construct() {
+		$this->action_url = Client::ACTION_URL_PRODUCTION;
+	}
+
+	/**
+	 * Get action URL.
+	 * 
+	 * @return string
+	 */
+	public function get_action_url() {
+		return $this->action_url;
+	}
+
+	/**
+	 * Set action URL.
+	 * 
+	 * @param string $action_url Action URL.
+	 * @return void
+	 */
+	public function get_action_url( $action_url ) {
+		$this->action_url = $action_url;
+	}
 }
