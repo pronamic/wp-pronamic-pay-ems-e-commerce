@@ -49,8 +49,8 @@ class Gateway extends Core_Gateway {
 		$this->client = new Client();
 
 		$this->client->set_action_url( $config->get_action_url() );
-		$this->client->set_storename( $config->storename );
-		$this->client->set_secret( $config->secret );
+		$this->client->set_storename( (string) $config->storename );
+		$this->client->set_secret( (string) $config->secret );
 	}
 
 	/**
