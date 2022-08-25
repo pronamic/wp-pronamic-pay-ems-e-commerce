@@ -40,7 +40,7 @@ class Gateway extends Core_Gateway {
 	 * @return void
 	 */
 	public function __construct( Config $config ) {
-		parent::__construct( $config );
+		parent::__construct();
 
 		$this->config = $config;
 
