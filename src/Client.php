@@ -366,7 +366,7 @@ class Client {
 	 */
 	public function get_data() {
 		// Required fields for payment request.
-		$required_fields = array(
+		$required_fields = [
 			'txntype'        => 'sale',
 			// According the EMS documentation the timezone should be in `Area/Location` notation, but it seems like `UTC` is also working.
 			'timezone'       => 'UTC',
@@ -385,10 +385,10 @@ class Client {
 			 */
 			'chargetotal'    => $this->amount->number_format( null, '.', '' ),
 			'currency'       => $this->get_currency_numeric_code(),
-		);
+		];
 
 		// Optional fields for payment request.
-		$optional_fields = array(
+		$optional_fields = [
 			'oid'                        => $this->get_order_id(),
 			'language'                   => $this->get_language(),
 			'paymentMethod'              => $this->get_payment_method(),
@@ -397,7 +397,7 @@ class Client {
 			'transactionNotificationURL' => $this->get_notification_url(),
 			'idealIssuerID'              => $this->get_issuer_id(),
 			'ems_notify_payment_id'      => (string) $this->get_payment_id(),
-		);
+		];
 
 		// @link http://briancray.com/2009/04/25/remove-null-values-php-arrays/
 		$optional_fields = array_filter( $optional_fields );
@@ -436,13 +436,13 @@ class Client {
 		$data   = $this->get_data();
 		$secret = $this->get_secret();
 
-		$values = array(
+		$values = [
 			$data['storename'],
 			$data['txndatetime'],
 			$data['chargetotal'],
 			$data['currency'],
 			$secret,
-		);
+		];
 
 		return self::compute_hash( $values );
 	}

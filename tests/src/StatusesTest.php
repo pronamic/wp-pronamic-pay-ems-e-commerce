@@ -27,9 +27,9 @@ class StatusesTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function status_matrix_provider() {
-		return array(
-			array( Statuses::OPEN, Core_Statuses::OPEN ),
-			array( 'not existing status', null ),
-		);
+		return [
+			[ Statuses::OPEN, Core_Statuses::OPEN ],
+			[ 'not existing status', null ],
+		];
 	}
 }

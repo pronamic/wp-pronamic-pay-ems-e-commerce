@@ -27,11 +27,11 @@ class PaymentMethodsTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function status_matrix_provider() {
-		return array(
-			array( Core_PaymentMethods::IDEAL, PaymentMethods::IDEAL ),
-			array( Core_PaymentMethods::PAYPAL, PaymentMethods::PAYPAL ),
-			array( Core_PaymentMethods::SOFORT, PaymentMethods::SOFORT ),
-			array( 'not existing payment method', null ),
-		);
+		return [
+			[ Core_PaymentMethods::IDEAL, PaymentMethods::IDEAL ],
+			[ Core_PaymentMethods::PAYPAL, PaymentMethods::PAYPAL ],
+			[ Core_PaymentMethods::SOFORT, PaymentMethods::SOFORT ],
+			[ 'not existing payment method', null ],
+		];
 	}
 }

@@ -128,26 +128,26 @@ class Gateway extends Core_Gateway {
 
 		$input_hash = filter_input( INPUT_POST, 'response_hash' );
 
-		$hash_values = array(
+		$hash_values = [
 			$this->client->get_secret(),
 			$approval_code,
 			filter_input( INPUT_POST, 'chargetotal', FILTER_SANITIZE_STRING ),
 			filter_input( INPUT_POST, 'currency', FILTER_SANITIZE_STRING ),
 			filter_input( INPUT_POST, 'txndatetime', FILTER_SANITIZE_STRING ),
 			$this->client->get_storename(),
-		);
+		];
 
 		if ( filter_has_var( INPUT_POST, 'notification_hash' ) ) {
 			$input_hash = filter_input( INPUT_POST, 'notification_hash' );
 
-			$hash_values = array(
+			$hash_values = [
 				filter_input( INPUT_POST, 'chargetotal', FILTER_SANITIZE_STRING ),
 				$this->client->get_secret(),
 				filter_input( INPUT_POST, 'currency', FILTER_SANITIZE_STRING ),
 				filter_input( INPUT_POST, 'txndatetime', FILTER_SANITIZE_STRING ),
 				$this->client->get_storename(),
 				$approval_code,
-			);
+			];
 		}
 
 		$hash = Client::compute_hash( $hash_values );
@@ -181,7 +181,7 @@ class Gateway extends Core_Gateway {
 			// Set the status of the payment.
 			$payment->set_status( $status );
 
-			$labels = array(
+			$labels = [
 				'approval_code'           => __( 'Approval code', 'pronamic_ideal' ),
 				'oid'                     => __( 'Order ID', 'pronamic_ideal' ),
 				'refnumber'               => _x( 'Reference number', 'creditcard', 'pronamic_ideal' ),
@@ -196,7 +196,7 @@ class Gateway extends Core_Gateway {
 				'ccbin'                   => __( 'Creditcard issuing bank', 'pronamic_ideal' ),
 				'cccountry'               => __( 'Creditcard country', 'pronamic_ideal' ),
 				'ccbrand'                 => __( 'Creditcard brand', 'pronamic_ideal' ),
-			);
+			];
 
 			$note = '';
 

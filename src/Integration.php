@@ -27,23 +27,23 @@ class Integration extends AbstractGatewayIntegration {
 	 *
 	 * @param array<string, mixed> $args Arguments.
 	 */
-	public function __construct( $args = array() ) {
+	public function __construct( $args = [] ) {
 		$args = wp_parse_args(
 			$args,
-			array(
+			[
 				'id'            => 'ems-ecommerce',
 				'name'          => 'EMS e-Commerce',
 				'action_url'    => Client::ACTION_URL_PRODUCTION,
 				'provider'      => 'ems',
 				'product_url'   => null,
 				'dashboard_url' => 'https://www.ipg-online.com/vt/login',
-				'supports'      => array(
+				'supports'      => [
 					'webhook',
 					'webhook_log',
 					'webhook_no_config',
-				),
+				],
 				'manual_url'    => \__( 'https://www.pronamic.eu/support/how-to-connect-ems-with-wordpress-via-pronamic-pay/', 'pronamic_ideal' ),
-			)
+			]
 		);
 
 		parent::__construct( $args );
@@ -51,7 +51,7 @@ class Integration extends AbstractGatewayIntegration {
 		$this->action_url = $args['action_url'];
 
 		// Actions
-		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
+		$function = [ __NAMESPACE__ . '\Listener', 'listen' ];
 
 		if ( ! has_action( 'wp_loaded', $function ) ) {
 			add_action( 'wp_loaded', $function );
@@ -64,39 +64,39 @@ class Integration extends AbstractGatewayIntegration {
 	 * @return array<int, array<string, callable|int|string|bool|array<int|string,int|string>>>
 	 */
 	public function get_settings_fields() {
-		$fields = array();
+		$fields = [];
 
 		// Storename.
-		$fields[] = array(
+		$fields[] = [
 			'section'  => 'general',
 			'filter'   => FILTER_UNSAFE_RAW,
 			'meta_key' => '_pronamic_gateway_ems_ecommerce_storename',
 			'title'    => _x( 'Storename', 'ems', 'pronamic_ideal' ),
 			'type'     => 'text',
-			'classes'  => array( 'code' ),
-		);
+			'classes'  => [ 'code' ],
+		];
 
 		// Shared secret.
-		$fields[] = array(
+		$fields[] = [
 			'section'  => 'general',
 			'filter'   => FILTER_UNSAFE_RAW,
 			'meta_key' => '_pronamic_gateway_ems_ecommerce_secret',
 			'title'    => _x( 'Shared Secret', 'ems', 'pronamic_ideal' ),
 			'type'     => 'text',
-			'classes'  => array( 'large-text', 'code' ),
-		);
+			'classes'  => [ 'large-text', 'code' ],
+		];
 
 		// Purchase ID.
-		$fields[] = array(
+		$fields[] = [
 			'section'     => 'advanced',
-			'filter'      => array(
+			'filter'      => [
 				'filter' => FILTER_SANITIZE_STRING,
 				'flags'  => FILTER_FLAG_NO_ENCODE_QUOTES,
-			),
+			],
 			'meta_key'    => '_pronamic_gateway_ems_ecommerce_order_id',
 			'title'       => __( 'Order ID', 'pronamic_ideal' ),
 			'type'        => 'text',
-			'classes'     => array( 'regular-text', 'code' ),
+			'classes'     => [ 'regular-text', 'code' ],
 			'tooltip'     => sprintf(
 				/* translators: %s: <code>{orderId}</code> */
 				__( 'The EMS e-Commerce %s parameter.', 'pronamic_ideal' ),
@@ -116,15 +116,15 @@ class Integration extends AbstractGatewayIntegration {
 					'{payment_id}'
 				)
 			),
-		);
+		];
 
 		// Notification URL.
-		$fields[] = array(
+		$fields[] = [
 			'section'  => 'feedback',
 			/* translators: Translate 'notification' the same as in the EMS e-Commerce dashboard. */
 			'title'    => _x( 'Notification URL', 'EMS e-Commerce', 'pronamic_ideal' ),
 			'type'     => 'text',
-			'classes'  => array( 'large-text', 'code' ),
+			'classes'  => [ 'large-text', 'code' ],
 			'value'    => home_url( '/' ),
 			'readonly' => true,
 			/* translators: Translate 'notification' the same as in the EMS e-Commerce dashboard. */
@@ -133,7 +133,7 @@ class Integration extends AbstractGatewayIntegration {
 				'EMS e-Commerce',
 				'pronamic_ideal'
 			),
-		);
+		];
 
 		return $fields;
 	}
