@@ -74,6 +74,7 @@ class Integration extends AbstractGatewayIntegration {
 			'title'    => _x( 'Storename', 'ems', 'pronamic_ideal' ),
 			'type'     => 'text',
 			'classes'  => [ 'code' ],
+			'required' => true,
 		];
 
 		// Shared secret.
@@ -84,6 +85,7 @@ class Integration extends AbstractGatewayIntegration {
 			'title'    => _x( 'Shared Secret', 'ems', 'pronamic_ideal' ),
 			'type'     => 'text',
 			'classes'  => [ 'large-text', 'code' ],
+			'required' => true,
 		];
 
 		// Purchase ID.
