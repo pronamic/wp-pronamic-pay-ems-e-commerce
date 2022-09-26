@@ -3,6 +3,7 @@
 namespace Pronamic\WordPress\Pay\Gateways\EMS\ECommerce;
 
 use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
+use Pronamic\WordPress\Pay\Core\PaymentMethod;
 use Pronamic\WordPress\Pay\Core\PaymentMethods as Core_PaymentMethods;
 use Pronamic\WordPress\Pay\Payments\PaymentStatus;
 use Pronamic\WordPress\Pay\Payments\Payment;
@@ -39,7 +40,7 @@ class Gateway extends Core_Gateway {
 	 * @return void
 	 */
 	public function __construct( Config $config ) {
-		parent::__construct( $config );
+		parent::__construct();
 
 		$this->config = $config;
 
@@ -51,22 +52,12 @@ class Gateway extends Core_Gateway {
 		$this->client->set_action_url( $config->get_action_url() );
 		$this->client->set_storename( (string) $config->storename );
 		$this->client->set_secret( (string) $config->secret );
-	}
 
-	/**
-	 * Get supported payment methods.
-	 *
-	 * @return array<string>
-	 *
-	 * @see Core_Gateway::get_supported_payment_methods()
-	 */
-	public function get_supported_payment_methods() {
-		return array(
-			Core_PaymentMethods::BANCONTACT,
-			Core_PaymentMethods::IDEAL,
-			Core_PaymentMethods::PAYPAL,
-			Core_PaymentMethods::SOFORT,
-		);
+		// Methods.
+		$this->register_payment_method( new PaymentMethod( Core_PaymentMethods::BANCONTACT ) );
+		$this->register_payment_method( new PaymentMethod( Core_PaymentMethods::IDEAL ) );
+		$this->register_payment_method( new PaymentMethod( Core_PaymentMethods::PAYPAL ) );
+		$this->register_payment_method( new PaymentMethod( Core_PaymentMethods::SOFORT ) );
 	}
 
 	/**
@@ -137,26 +128,26 @@ class Gateway extends Core_Gateway {
 
 		$input_hash = filter_input( INPUT_POST, 'response_hash' );
 
-		$hash_values = array(
+		$hash_values = [
 			$this->client->get_secret(),
 			$approval_code,
 			filter_input( INPUT_POST, 'chargetotal', FILTER_SANITIZE_STRING ),
 			filter_input( INPUT_POST, 'currency', FILTER_SANITIZE_STRING ),
 			filter_input( INPUT_POST, 'txndatetime', FILTER_SANITIZE_STRING ),
 			$this->client->get_storename(),
-		);
+		];
 
 		if ( filter_has_var( INPUT_POST, 'notification_hash' ) ) {
 			$input_hash = filter_input( INPUT_POST, 'notification_hash' );
 
-			$hash_values = array(
+			$hash_values = [
 				filter_input( INPUT_POST, 'chargetotal', FILTER_SANITIZE_STRING ),
 				$this->client->get_secret(),
 				filter_input( INPUT_POST, 'currency', FILTER_SANITIZE_STRING ),
 				filter_input( INPUT_POST, 'txndatetime', FILTER_SANITIZE_STRING ),
 				$this->client->get_storename(),
 				$approval_code,
-			);
+			];
 		}
 
 		$hash = Client::compute_hash( $hash_values );
@@ -190,7 +181,7 @@ class Gateway extends Core_Gateway {
 			// Set the status of the payment.
 			$payment->set_status( $status );
 
-			$labels = array(
+			$labels = [
 				'approval_code'           => __( 'Approval code', 'pronamic_ideal' ),
 				'oid'                     => __( 'Order ID', 'pronamic_ideal' ),
 				'refnumber'               => _x( 'Reference number', 'creditcard', 'pronamic_ideal' ),
@@ -205,7 +196,7 @@ class Gateway extends Core_Gateway {
 				'ccbin'                   => __( 'Creditcard issuing bank', 'pronamic_ideal' ),
 				'cccountry'               => __( 'Creditcard country', 'pronamic_ideal' ),
 				'ccbrand'                 => __( 'Creditcard brand', 'pronamic_ideal' ),
-			);
+			];
 
 			$note = '';
 
