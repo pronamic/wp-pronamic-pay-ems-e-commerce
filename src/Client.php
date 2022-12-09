@@ -380,7 +380,7 @@ class Client {
 			 * as decimal separator, e. g. 12.34 for an amount of 12 Euro and
 			 * 34 Cent. Group separators like1,000.01 / 1.000,01 are not
 			 * allowed.
-			 * 
+			 *
 			 * @link https://github.com/wp-pay-gateways/ems-e-commerce/blob/5bb23be651fa54ce39244946525416796a5c3342/documentation/EMS-Manual-e-Comm-Gateway-HPP-tech-2017-6.pdf
 			 */
 			'chargetotal'    => $this->amount->number_format( null, '.', '' ),

@@ -17,7 +17,7 @@ use Pronamic\WordPress\Pay\Core\GatewayConfig;
 class Config extends GatewayConfig {
 	/**
 	 * Action URL.
-	 * 
+	 *
 	 * @var string
 	 */
 	private $action_url;
@@ -52,7 +52,7 @@ class Config extends GatewayConfig {
 
 	/**
 	 * Get action URL.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_action_url() {
@@ -61,7 +61,7 @@ class Config extends GatewayConfig {
 
 	/**
 	 * Set action URL.
-	 * 
+	 *
 	 * @param string $action_url Action URL.
 	 * @return void
 	 */
