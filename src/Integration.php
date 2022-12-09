@@ -91,10 +91,10 @@ class Integration extends AbstractGatewayIntegration {
 		// Purchase ID.
 		$fields[] = [
 			'section'     => 'advanced',
-			'filter'      => [
-				'filter' => FILTER_SANITIZE_STRING,
-				'flags'  => FILTER_FLAG_NO_ENCODE_QUOTES,
-			],
+			/**
+			 * Filter EMS order ID unsafe raw to allow double quotes.
+			 */
+			'filter'      => \FILTER_UNSAFE_RAW,
 			'meta_key'    => '_pronamic_gateway_ems_ecommerce_order_id',
 			'title'       => __( 'Order ID', 'pronamic_ideal' ),
 			'type'        => 'text',

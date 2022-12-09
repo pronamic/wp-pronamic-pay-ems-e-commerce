@@ -21,11 +21,12 @@ class Listener {
 	 * @return void
 	 */
 	public static function listen() {
-		if ( ! filter_has_var( INPUT_POST, 'ems_notify_payment_id' ) ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$payment_id = \array_key_exists( 'ems_notify_payment_id', $_POST ) ? \sanitize_text_field( \wp_unslash( $_POST['ems_notify_payment_id'] ) ) : null;
+
+		if ( null === $payment_id ) {
 			return;
 		}
-
-		$payment_id = filter_input( INPUT_POST, 'ems_notify_payment_id' );
 
 		$payment = get_pronamic_payment( $payment_id );
 
