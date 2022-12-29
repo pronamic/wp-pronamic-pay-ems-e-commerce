@@ -7,6 +7,21 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.3.0] - 2022-12-29
+
+### Commits
+
+- No longer use `filter_` functions and deprecated `FILTER_SANITIZE_STRING`. ([c91dc03](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/c91dc03d507748761d25afe34ff344da94162d7b))
+
+### Composer
+
+- Changed `php` from `>=5.6.20` to `>=8.0`.
+- Changed `wp-pay/core` from `^4.0` to `v4.6.0`.
+	Release notes: https://github.com/pronamic/wp-pay-core/releases/tag/v4.6.0
+Full set of changes: [`4.2.0...4.3.0`][4.3.0]
+
+[4.3.0]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.2.0...v4.3.0
+
 ## [4.2.0] - 2022-09-26
 - Updated payment methods registration.
 
