@@ -4,6 +4,7 @@
 	"keywords": ["wordpress", "wp", "pay", "ems", "gateway", "pronamic"],
 	"homepage": "http://www.wp-pay.org/gateways/ems-e-commerce/",
 	"license": "GPL-3.0-or-later",
+	"type": "wordpress-plugin",
 	"authors": [
 		{
 			"name": "Pronamic",
