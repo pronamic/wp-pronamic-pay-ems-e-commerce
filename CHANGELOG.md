@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.3.2] - 2023-03-27
+
+### Commits
+
+- Set Composer type to `wordpress-plugin`. ([d1ea6c3](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/d1ea6c351e51adeb1ec3616bf331dad170e5a6d3))
+- Updated .gitattributes ([ac81854](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/ac81854242dd2b3b0d7774b1c624a4b6330f58ef)) ([0e729e5](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/0e729e5ced27b8becb0fb82e18846224d8f9ff1e))
+
+Full set of changes: [`4.3.1...4.3.2`][4.3.2]
+
+[4.3.2]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.3.1...v4.3.2
+
 ## [4.3.1] - 2023-01-31
 ### Composer
 
