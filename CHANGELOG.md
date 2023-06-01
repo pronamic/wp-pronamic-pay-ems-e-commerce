@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.3.3] - 2023-06-01
+
+### Commits
+
+- Switch from `pronamic/wp-deployer` to `pronamic/pronamic-cli`. ([064f96e](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/064f96e345172b76a8c43616e002796f95007e2f))
+- Updated .gitattributes ([aba1902](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/aba19026afd0f20c4ad6a5e90f8847d4b682cde0))
+
+Full set of changes: [`4.3.2...4.3.3`][4.3.3]
+
+[4.3.3]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.3.2...v4.3.3
+
 ## [4.3.2] - 2023-03-27
 
 ### Commits
