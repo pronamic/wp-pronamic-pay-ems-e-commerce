@@ -199,6 +199,13 @@ class Gateway extends Core_Gateway {
 
 		$payment->set_status( $status );
 
+		// Transaction ID.
+		if ( array_key_exists( 'endpointTransactionId', $_POST ) ) {
+			$transaction_id = \sanitize_text_field( \wp_unslash( $_POST['endpointTransactionId'] ) );
+
+			$payment->set_transaction_id( $transaction_id );
+		}
+
 		// Add payment note.
 		$labels = [
 			'approval_code'           => __( 'Approval code', 'pronamic_ideal' ),
