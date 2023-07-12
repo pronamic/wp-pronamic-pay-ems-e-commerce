@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.3.4] - 2023-07-12
+
+### Commits
+
+- Updated for removed payment ID fallback in formatted payment string (pronamic/wp-pronamic-pay-adyen#23). ([c88d738](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/c88d738b9f45afefa81385d15a8113330272ac4d))
+- Set payment transaction ID on return. ([8947949](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/8947949d5eb0769e3e714b5de130e9680e87b85c))
+
+Full set of changes: [`4.3.3...4.3.4`][4.3.4]
+
+[4.3.4]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.3.3...v4.3.4
+
 ## [4.3.3] - 2023-06-01
 
 ### Commits
