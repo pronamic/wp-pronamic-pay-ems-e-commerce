@@ -78,7 +78,6 @@ class Gateway extends Core_Gateway {
 	 * @param Payment $payment Payment.
 	 * @return array<string, string>
 	 *
-	 * @see     Core_Gateway::get_output_html()
 	 * @since   1.0.0
 	 * @version 2.0.4
 	 */
