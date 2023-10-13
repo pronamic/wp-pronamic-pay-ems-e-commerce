@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.3.5] - 2023-10-13
+
+### Commits
+
+- The `FILTER_UNSAFE_RAW` is not required, the default `sanitize_text_field` will work fine. ([b58b941](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/b58b941145bfc06156bac31917350ff1af6fce21))
+- Removed old see ref. ([18de110](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/18de1100899fea9c474cf9fecd15384dfb669442))
+
+Full set of changes: [`4.3.4...4.3.5`][4.3.5]
+
+[4.3.5]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.3.4...v4.3.5
+
 ## [4.3.4] - 2023-07-12
 
 ### Commits
