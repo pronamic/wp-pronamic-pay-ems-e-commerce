@@ -89,6 +89,17 @@ class Gateway extends Core_Gateway {
 		$this->client->set_amount( $payment->get_total_amount() );
 		$this->client->set_issuer_id( $payment->get_meta( 'issuer' ) );
 
+		/**
+		 * We set the checkout option to `combinedpage` for iDEAL 2.0 transactions:
+		 *
+		 * "For a standard hosted payment page integration, you should use the checkout option `combinedpage`
+		 * that consolidates the payment method choice and the typical next step in a single page."
+		 *
+		 * @link https://www.emspay.com/nl/en/support/implementation-guide-ideal-ipg
+		 * @link https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/issues/4
+		 */
+		$this->client->set_checkout_option( 'combinedpage' );
+
 		// Order ID.
 		$order_id = $payment->format_string( (string) $this->config->order_id );
 

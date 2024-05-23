@@ -138,6 +138,13 @@ class Client {
 	private $transaction_datetime;
 
 	/**
+	 * Checkout option.
+	 *
+	 * @var string
+	 */
+	private $checkout_option;
+
+	/**
 	 * Construct and initialize an EMS e-Commerce object
 	 */
 	public function __construct() {
@@ -360,6 +367,25 @@ class Client {
 	}
 
 	/**
+	 * Get checkout option.
+	 *
+	 * @return string
+	 */
+	public function get_checkout_option() {
+		return $this->checkout_option;
+	}
+
+	/**
+	 * Set checkout option.
+	 *
+	 * @param string $checkout_option Checkout option.
+	 * @return void
+	 */
+	public function set_checkout_option( $checkout_option ) {
+		$this->checkout_option = $checkout_option;
+	}
+
+	/**
 	 * Get data
 	 *
 	 * @return array<string, string>
@@ -397,6 +423,7 @@ class Client {
 			'transactionNotificationURL' => $this->get_notification_url(),
 			'idealIssuerID'              => $this->get_issuer_id(),
 			'ems_notify_payment_id'      => (string) $this->get_payment_id(),
+			'checkoutoption'             => (string) $this->get_checkout_option(),
 		];
 
 		// @link http://briancray.com/2009/04/25/remove-null-values-php-arrays/
