@@ -7,6 +7,20 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.4.0] - 2024-05-23
+
+### Added
+
+- Set parameter `checkoutoption` to `combinedpage` for iDEAL 2.0. [#4](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/issues/4)
+
+### Commits
+
+- composer update ([4718c18](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/4718c18c57faecc60fca6bb609be70e4f74aabf9))
+
+Full set of changes: [`4.3.5...4.4.0`][4.4.0]
+
+[4.4.0]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.3.5...v4.4.0
+
 ## [4.3.5] - 2023-10-13
 
 ### Commits
