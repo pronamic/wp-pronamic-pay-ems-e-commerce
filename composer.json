@@ -35,7 +35,8 @@
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"bamarni/composer-bin-plugin": true,
 			"roots/wordpress-core-installer": true,
-			"composer/installers": true
+			"composer/installers": true,
+			"automattic/jetpack-autoloader": true
 		}
 	},
 	"require": {
