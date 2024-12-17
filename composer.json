@@ -38,6 +38,9 @@
 			"automattic/jetpack-autoloader": true
 		},
 		"sort-packages": true,
+		"platform": {
+			"php": "8.2"
+		},
 		"wp-slug": "pronamic-pay-ems-e-commerce"
 	},
 	"require": {
