@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.4.1] - 2024-12-17
+
+### Commits
+
+- Happy 2024. ([864e3ed](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/864e3edb9684dc5c353480093871f7b046cc8b3c))
+- Added `wp-slug` to Composer config. ([1f1323d](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/1f1323dd6c86bfafcf645fe46673c1fab23ecbdd))
+
+Full set of changes: [`4.4.0...4.4.1`][4.4.1]
+
+[4.4.1]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.4.0...v4.4.1
+
 ## [4.4.0] - 2024-05-23
 
 ### Added
