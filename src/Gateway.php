@@ -243,7 +243,7 @@ class Gateway extends Core_Gateway {
 		];
 
 		$note = sprintf(
-			'<p>%s</p',
+			'<p>%s</p>',
 			\__( 'EMS e-Commerce transaction data in response message:', 'pronamic_ideal' )
 		);
 
