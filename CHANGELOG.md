@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.4.2] - 2025-02-14
+
+### Commits
+
+- Fixed invalid HTML. ([5cfc6aa](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/5cfc6aa027b0b16c6bbf483b0553c0b0895fc8f8))
+
+Full set of changes: [`4.4.1...4.4.2`][4.4.2]
+
+[4.4.2]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.4.1...v4.4.2
+
 ## [4.4.1] - 2024-12-17
 
 ### Commits
