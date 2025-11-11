@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [4.4.3] - 2025-11-11
+
+### Commits
+
+- Added this point we shoud not use translation functions. ([d177191](https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/commit/d177191552e177dd28d39a25e421413c14635c44))
+
+Full set of changes: [`4.4.2...4.4.3`][4.4.3]
+
+[4.4.3]: https://github.com/pronamic/wp-pronamic-pay-ems-e-commerce/compare/v4.4.2...v4.4.3
+
 ## [4.4.2] - 2025-02-14
 
 ### Commits
